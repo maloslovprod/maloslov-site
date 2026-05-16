@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MALOSLOV</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f3f3f0;
+      color: #111;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    ::selection {
+      background: #111;
+      color: #fff;
+    }
+    img {
+      display: block;
+      max-width: 100%;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 28px 42px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(243,243,240,0.72);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+    .logo {
+      font-size: 26px;
+      font-weight: 900;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+    .lang {
+      display: flex;
+      gap: 18px;
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      opacity: 0.65;
+    }
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      padding: 0 42px 80px;
+      background: #f3f3f0;
+    }
+    .hero img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(100%);
+      animation: slowZoom 18s ease-in-out infinite alternate;
+      transform: scale(1.03);
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,0.08);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      animation: fadeUp 1.2s ease-out;
+    }
+    .hero-subtitle {
+      font-size: 12px;
+      letter-spacing: 0.45em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      font-weight: 700;
+      margin-bottom: 24px;
+    }
+    .hero-title {
+      font-size: clamp(72px, 12vw, 180px);
+      line-height: 0.88;
+      font-weight: 900;
+      letter-spacing: -0.05em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+      max-width: 1000px;
+    }
+    .hero-text {
+      max-width: 700px;
+      font-size: 17px;
+      line-height: 1.8;
+      color: rgba(0,0,0,0.68);
+    }
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 42px;
+    }
+    .button {
+      border: 1px solid rgba(0,0,0,0.15);
+      padding: 16px 28px;
+      text-transform: uppercase;
+      letter-spacing: 0.24em;
+      font-size: 11px;
+      transition: all 0.45s ease;
+      background: transparent;
+      cursor: pointer;
+    }
+    .button:hover {
+      background: #111;
+      color: #fff;
+      transform: scale(1.04);
+    }
+    .section-dark {
+      background: linear-gradient(to bottom, #1a1a1a, #000);
+      color: #fff;
+    }
+    .section-light {
+      background: linear-gradient(to bottom, #ecece8, #dcdcd7);
+      color: #111;
+    }
+    .section {
+      padding: 130px 42px;
+    }
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .release-grid,
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.35em;
+      font-size: 11px;
+      opacity: 0.5;
+      margin-bottom: 22px;
+    }
+    .section-title {
+      font-size: clamp(48px, 7vw, 110px);
+      line-height: 0.92;
+      font-weight: 900;
+      text-transform: uppercase;
+      margin-bottom: 26px;
+    }
+    .release-subtitle {
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      font-size: 12px;
+      opacity: 0.6;
+      margin-bottom: 34px;
+    }
+    .platforms {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+    .platform-btn {
+      border: 1px solid rgba(255,255,255,0.18);
+      padding: 15px 24px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-size: 11px;
+      transition: all 0.45s ease;
+    }
+    .platform-btn:hover {
+      background: #fff;
+      color: #000;
+    }
+    .cover-wrap,
+    .about-image-wrap,
+    .gallery-item {
+      overflow: hidden;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.25);
+    }
+    .cover-wrap img,
+    .about-image-wrap img,
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(100%);
+      transition: transform 1s ease;
+    }
+    .cover-wrap:hover img,
+    .about-image-wrap:hover img,
+    .gallery-item:hover img {
+      transform: scale(1.04);
+    }
+    .about-text {
+      display: flex;
+      flex-direction: column;
+      gap: 26px;
+      max-width: 650px;
+      font-size: 16px;
+      line-height: 1.9;
+      color: rgba(0,0,0,0.72);
+    }
+    .gallery-header {
+      margin-bottom: 70px;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 26px;
+    }
+    .footer {
+      background: #000;
+      color: #fff;
+      text-align: center;
+      padding: 90px 42px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .footer-title {
+      font-size: 44px;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .footer-subtitle {
+      text-transform: uppercase;
+      letter-spacing: 0.32em;
+      font-size: 11px;
+      opacity: 0.5;
+      margin-bottom: 42px;
+    }
+    .socials {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 28px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-size: 12px;
+      opacity: 0.72;
+    }
+    .copyright {
+      margin-top: 48px;
+      text-transform: uppercase;
+      letter-spacing: 0.4em;
+      font-size: 10px;
+      opacity: 0.35;
+    }
+    @keyframes slowZoom {
+      from {
+        transform: scale(1.03);
+      }
+      to {
+        transform: scale(1.08);
+      }
+    }
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @media (max-width: 900px) {
+      .header {
+        padding: 22px 22px;
+      }
+      .hero {
+        padding: 0 22px 54px;
+      }
+      .section {
+        padding: 90px 22px;
+      }
+      .release-grid,
+      .about-grid,
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+      .gallery-grid {
+        gap: 18px;
+      }
+      .hero-text {
+        font-size: 15px;
+      }
+      .footer {
+        padding: 70px 22px;
+      }
+      .socials {
+        gap: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="logo">MALOSLOV</div>
+    <div class="lang">
+      <span>RU</span>
+      <span>EN</span>
+      <span>UA</span>
+    </div>
+  </header>
+  <section class="hero">
+    <img src="images/hero.jpg" alt="MALOSLOV" />
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-subtitle">
+        artist / producer / sound engineer
+      </div>
+      <h1 class="hero-title">
+        MALOSLOV
+      </h1>
+      <p class="hero-text">
+        Music as a way to translate inner emotions into sound.
+        From songwriting and vocal recording to production,
+        mixing and final mastering.
+      </p>
+      <div class="hero-buttons">
+        <a href="#release" class="button">Listen</a>
+        <a href="#about" class="button">About</a>
+        <a href="#gallery" class="button">Gallery</a>
+        <a href="https://telegram.me/malosv" target="_blank" class="button">Contact</a>
+      </div>
+    </div>
+  </section>
+  <section id="release" class="section section-dark">
+    <div class="container release-grid">
+      <div>
+        <div class="eyebrow">Featured Release</div>
+        <h2 class="section-title">
+          Dubai Airlines
+        </h2>
+        <div class="release-subtitle">
+          with Kazz · most streamed release
+        </div>
+        <div class="platforms">
+          <a href="https://open.spotify.com/artist/1sMB58s4bxwgYryrz2X7Xx?si=yarsntyYQwyKSGkjWfbKQQ" target="_blank" class="platform-btn">Spotify</a>
+          <a href="https://music.apple.com/ru/artist/maloslov/1524225095" target="_blank" class="platform-btn">Apple Music</a>
+          <a href="https://soundcloud.com/maloslov" target="_blank" class="platform-btn">SoundCloud</a>
+        </div>
+      </div>
+      <div class="cover-wrap">
+        <img src="images/dubai-airlines-cover.jpg" alt="Dubai Airlines">
+      </div>
+    </div>
+  </section>
+  <section id="about" class="section section-light">
+    <div class="container about-grid">
+      <div class="about-image-wrap">
+        <img src="images/about.jpg" alt="MALOSLOV studio">
+      </div>
+      <div>
+        <div class="eyebrow">About</div>
+        <h2 class="section-title">
+          Independent multi-genre artist.
+        </h2>
+        <div class="about-text">
+          <p>
+            MALOSLOV has been involved in music for over ten years — from learning guitar to building studio environments and collaborating with artists across multiple creative directions.
+          </p>
+          <p>
+            Every track is developed independently: songwriting, recording, production, mixing and mastering.
+          </p>
+          <p>
+            Music remains both a personal form of therapy and a way to translate emotions into atmosphere and sound.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="gallery" class="section section-dark">
+    <div class="container">
+      <div class="gallery-header">
+        <div class="eyebrow">Studio Moments</div>
+        <h2 class="section-title">
+          Behind The Sound
+        </h2>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="images/studio-1.jpg" alt="Studio photo 1">
+        </div>
+        <div class="gallery-item">
+          <img src="images/studio-2.jpg" alt="Studio photo 2">
+        </div>
+        <div class="gallery-item">
+          <img src="images/studio-3.jpg" alt="Studio photo 3">
+        </div>
+        <div class="gallery-item">
+          <img src="images/studio-4.jpg" alt="Studio photo 4">
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="footer">
+    <div class="footer-title">MALOSLOV</div>
+    <div class="footer-subtitle">
+      independent artist / producer
+    </div>
+    <div class="socials">
+      <a href="https://open.spotify.com/artist/1sMB58s4bxwgYryrz2X7Xx?si=yarsntyYQwyKSGkjWfbKQQ" target="_blank">Spotify</a>
+      <a href="https://music.apple.com/ru/artist/maloslov/1524225095" target="_blank">Apple Music</a>
+      <a href="https://www.instagram.com/malosslovv" target="_blank">Instagram</a>
+      <a href="https://telegram.me/malosv" target="_blank">Telegram</a>
+      <a href="https://www.youtube.com/@malosslovv" target="_blank">YouTube</a>
+      <a href="https://www.tiktok.com/@maloslov.prod" target="_blank">TikTok</a>
+    </div>
+    <div class="copyright">
+      MALOSLOV ©
+    </div>
+  </footer>
+</body>
+</html>

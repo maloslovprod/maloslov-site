@@ -1,379 +1,598 @@
-MALOSLOV — FINAL CLEAN REBUILD
-
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
 <title>MALOSLOV</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
 <style>
+
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
 }
-:root{
---bg:#f3f3ef;
---text:#0a0a0a;
---muted:rgba(0,0,0,.58);
---border:rgba(0,0,0,.08);
---dark:#050505;
-}
+
 html{
 scroll-behavior:smooth;
 }
+
 body{
 font-family:'Inter',sans-serif;
-background:var(--bg);
-color:var(--text);
+background:#f2f2ef;
+color:#0b0b0b;
 overflow-x:hidden;
 -webkit-font-smoothing:antialiased;
 }
+
 img{
 display:block;
 max-width:100%;
 }
+
 a{
 text-decoration:none;
 color:inherit;
 }
+
+:root{
+--container:1440px;
+}
+
+.container{
+width:100%;
+max-width:var(--container);
+margin:0 auto;
+padding:0 32px;
+}
+
 header{
 position:fixed;
 top:0;
 left:0;
 width:100%;
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:20px 22px;
 z-index:1000;
-background:rgba(243,243,239,.82);
-backdrop-filter:blur(16px);
-border-bottom:1px solid var(--border);
+background:rgba(242,242,239,0.88);
+backdrop-filter:blur(14px);
+border-bottom:1px solid rgba(0,0,0,0.05);
 }
+
+.header-inner{
+height:84px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+}
+
 .logo{
-font-size:15px;
+font-size:20px;
 font-weight:900;
-letter-spacing:.38em;
+letter-spacing:5px;
 }
+
 .lang-switch{
 display:flex;
-gap:12px;
+gap:14px;
 }
+
 .lang-btn{
-font-size:10px;
-letter-spacing:.24em;
-opacity:.38;
+font-size:11px;
+letter-spacing:2px;
 cursor:pointer;
-transition:.3s;
+opacity:0.35;
+transition:0.25s;
 }
+
 .lang-btn.active{
 opacity:1;
+font-weight:700;
 }
+
 .hero{
-min-height:100svh;
+min-height:100vh;
 display:flex;
-flex-direction:column;
-justify-content:center;
-padding:110px 22px 60px;
-gap:42px;
+align-items:center;
+padding-top:130px;
+padding-bottom:70px;
 }
-.hero-image{
-width:100%;
-display:flex;
-justify-content:center;
+
+.hero-grid{
+display:grid;
+grid-template-columns:0.9fr 1.1fr;
+gap:60px;
 align-items:center;
 }
-.hero-image img{
-width:100%;
-max-width:560px;
-height:auto;
-object-fit:contain;
-object-position:center top;
+
+.hero-sub{
+font-size:11px;
+letter-spacing:6px;
+opacity:0.45;
+margin-bottom:26px;
 }
-.hero-content{
-max-width:720px;
-}
-.eyebrow{
-font-size:10px;
-letter-spacing:.42em;
-opacity:.45;
-margin-bottom:18px;
-text-transform:uppercase;
-}
+
 .hero-title{
-font-size:clamp(64px,18vw,190px);
-line-height:.86;
+font-size:clamp(72px,8vw,140px);
+line-height:0.88;
 font-weight:900;
-letter-spacing:-.08em;
-margin-bottom:22px;
+letter-spacing:-5px;
+margin-bottom:28px;
+max-width:700px;
 }
+
 .hero-text{
-max-width:540px;
-font-size:15px;
+max-width:520px;
+font-size:17px;
 line-height:1.9;
-color:var(--muted);
-margin-bottom:34px;
+opacity:0.7;
+margin-bottom:38px;
 }
+
 .hero-buttons{
 display:flex;
 flex-wrap:wrap;
 gap:12px;
 }
-.hero-buttons a,
-.listen-btn,
-.contact-links a{
-padding:14px 18px;
-border:1px solid var(--border);
-font-size:10px;
-letter-spacing:.22em;
-transition:.3s ease;
-text-transform:uppercase;
+
+.hero-buttons a{
+padding:16px 24px;
+border:1px solid rgba(0,0,0,0.08);
+font-size:11px;
+letter-spacing:3px;
+transition:0.3s;
 }
-.hero-buttons a:hover,
-.contact-links a:hover{
-background:#000;
+
+.hero-buttons a:hover{
+background:#0b0b0b;
 color:#fff;
 }
-section{
-padding:90px 22px;
-}
-.container{
-max-width:1440px;
-margin:0 auto;
-}
-.about{
-display:grid;
-gap:42px;
+
+.hero-image{
+display:flex;
+justify-content:center;
 align-items:center;
 }
+
+.hero-image img{
+width:100%;
+max-width:720px;
+height:auto;
+object-fit:contain;
+object-position:center;
+}
+
+section{
+padding:140px 0;
+}
+
+.about-grid{
+display:grid;
+grid-template-columns:520px 1fr;
+gap:70px;
+align-items:center;
+}
+
 .about-image img{
 width:100%;
-max-width:560px;
-margin:0 auto;
-height:auto;
+aspect-ratio:0.78;
 object-fit:cover;
 }
-.section-title{
-font-size:clamp(52px,12vw,150px);
-line-height:.9;
+
+.section-label{
+font-size:11px;
+letter-spacing:6px;
+opacity:0.35;
+margin-bottom:22px;
+}
+
+.about-title{
+font-size:clamp(54px,6vw,108px);
+line-height:0.9;
 font-weight:900;
-letter-spacing:-.07em;
-margin-bottom:26px;
-text-transform:uppercase;
+letter-spacing:-4px;
+max-width:800px;
+margin-bottom:36px;
 }
-.about-text,
-.track-desc{
-max-width:720px;
-font-size:15px;
+
+.about-text{
+max-width:620px;
+font-size:18px;
 line-height:2;
-color:var(--muted);
+opacity:0.72;
 }
+
 .track{
-background:var(--dark);
+background:#050505;
 color:#fff;
 }
+
 .track-grid{
 display:grid;
-gap:42px;
+grid-template-columns:420px 1fr;
+gap:80px;
 align-items:center;
 }
+
 .track-cover img{
 width:100%;
-max-width:560px;
-margin:0 auto;
 }
-.track .eyebrow,
+
+.track-title{
+font-size:clamp(54px,7vw,118px);
+line-height:0.9;
+font-weight:900;
+letter-spacing:-4px;
+margin-bottom:26px;
+}
+
 .track-desc{
-color:rgba(255,255,255,.68);
+font-size:18px;
+line-height:1.9;
+opacity:0.72;
+max-width:620px;
+margin-bottom:36px;
 }
+
 .listen-btn{
-margin-top:34px;
-display:inline-block;
-border:1px solid rgba(255,255,255,.16);
+display:inline-flex;
+align-items:center;
+justify-content:center;
+padding:18px 28px;
+border:1px solid rgba(255,255,255,0.14);
+font-size:11px;
+letter-spacing:3px;
+transition:0.3s;
 }
+
 .listen-btn:hover{
 background:#fff;
 color:#000;
 }
+
 .gallery{
 background:#000;
 color:#fff;
 }
-.gallery .eyebrow{
-color:rgba(255,255,255,.45);
+
+.gallery-title{
+font-size:clamp(58px,7vw,120px);
+line-height:0.9;
+font-weight:900;
+letter-spacing:-4px;
+margin-bottom:60px;
 }
+
 .gallery-grid{
 display:grid;
-grid-template-columns:1fr;
-gap:18px;
-margin-top:40px;
+grid-template-columns:repeat(3,1fr);
+gap:22px;
 }
+
 .gallery-grid img{
 width:100%;
 height:auto;
-object-fit:cover;
+display:block;
 filter:grayscale(100%);
-transition:.5s ease;
+transition:0.45s;
 }
+
 .gallery-grid img:hover{
-transform:translateY(-4px);
 filter:grayscale(0%);
+transform:translateY(-4px);
 }
+
 .contact{
 text-align:center;
 }
+
+.contact-title{
+font-size:clamp(60px,8vw,130px);
+line-height:0.9;
+font-weight:900;
+letter-spacing:-4px;
+margin-bottom:50px;
+}
+
 .contact-links{
 display:flex;
 justify-content:center;
 flex-wrap:wrap;
-gap:12px;
-margin-top:36px;
+gap:14px;
 }
+
+.contact-links a{
+padding:16px 24px;
+border:1px solid rgba(0,0,0,0.08);
+font-size:11px;
+letter-spacing:3px;
+transition:0.3s;
+}
+
+.contact-links a:hover{
+background:#000;
+color:#fff;
+}
+
 footer{
-padding:34px 22px;
+padding:42px 0;
+border-top:1px solid rgba(0,0,0,0.05);
+}
+
+.footer-inner{
 display:flex;
 justify-content:space-between;
+gap:20px;
 flex-wrap:wrap;
-gap:10px;
-font-size:10px;
-letter-spacing:.22em;
-opacity:.4;
+font-size:11px;
+letter-spacing:3px;
+opacity:0.45;
 }
-@media(min-width:768px){
-header{
-padding:24px 34px;
+
+@media(max-width:1200px){
+
+.hero-grid{
+grid-template-columns:1fr;
+gap:40px;
 }
-.hero{
-padding:130px 34px 80px;
+
+.hero-image{
+order:-1;
 }
-section{
-padding:120px 34px;
+
+.about-grid{
+grid-template-columns:1fr;
 }
+
+.track-grid{
+grid-template-columns:1fr;
+}
+
 .gallery-grid{
 grid-template-columns:repeat(2,1fr);
 }
+
+.hero-title{
+max-width:100%;
 }
-@media(min-width:1180px){
+
+}
+
+@media(max-width:768px){
+
+.container{
+padding:0 22px;
+}
+
+header{
+background:rgba(242,242,239,0.94);
+}
+
+.header-inner{
+height:76px;
+}
+
+.logo{
+font-size:18px;
+}
+
 .hero{
-min-height:100vh;
-display:grid;
-grid-template-columns:1.05fr .95fr;
-align-items:end;
-gap:70px;
-padding:150px 50px 80px;
+padding-top:120px;
+padding-bottom:50px;
+min-height:auto;
 }
-.hero-image{
-height:100%;
-align-items:flex-end;
-justify-content:flex-end;
-}
-.hero-image img{
-width:auto;
-height:88vh;
-max-width:none;
-}
-.about{
-grid-template-columns:480px 1fr;
-gap:90px;
-}
-.track-grid{
-grid-template-columns:420px 1fr;
-gap:90px;
-}
-.gallery-grid{
-grid-template-columns:repeat(3,1fr);
+
+.hero-grid{
 gap:24px;
 }
-.gallery-grid img{
-height:760px;
+
+.hero-image img{
+max-width:100%;
 }
+
+.hero-title{
+font-size:62px;
+letter-spacing:-3px;
 }
+
+.hero-text{
+font-size:15px;
+line-height:1.8;
+}
+
+.hero-buttons{
+gap:10px;
+}
+
+.hero-buttons a{
+padding:14px 18px;
+font-size:10px;
+}
+
+section{
+padding:90px 0;
+}
+
+.about-grid{
+gap:34px;
+}
+
+.about-title{
+font-size:54px;
+letter-spacing:-2px;
+}
+
+.about-text{
+font-size:15px;
+line-height:1.9;
+}
+
+.track-grid{
+gap:34px;
+}
+
+.track-title{
+font-size:64px;
+}
+
+.track-desc{
+font-size:15px;
+}
+
+.gallery-title{
+font-size:64px;
+margin-bottom:36px;
+}
+
+.gallery-grid{
+grid-template-columns:1fr;
+gap:16px;
+}
+
+.contact-title{
+font-size:68px;
+margin-bottom:34px;
+}
+
+.contact-links{
+gap:10px;
+}
+
+.contact-links a{
+padding:14px 18px;
+font-size:10px;
+}
+
+.footer-inner{
+flex-direction:column;
+gap:12px;
+}
+
+}
+
 </style>
 </head>
+
 <body>
+
 <header>
+<div class="container header-inner">
+
 <div class="logo">
 MALOSLOV
 </div>
+
 <div class="lang-switch">
 <span class="lang-btn" data-lang="ru">RU</span>
 <span class="lang-btn" data-lang="en">EN</span>
 <span class="lang-btn active" data-lang="ua">UA</span>
 </div>
+
+</div>
 </header>
-<section class="hero container">
+
+<section class="hero">
+
+<div class="container hero-grid">
+
 <div class="hero-content">
-<div class="eyebrow">
+
+<div class="hero-sub">
 ARTIST / PRODUCER / SOUND ENGINEER
 </div>
+
 <h1 class="hero-title">
 MALOSLOV
 </h1>
+
 <p class="hero-text" data-key="heroText">
 Музика як спосіб передавати внутрішні емоції через звук.
 Від написання тексту та запису вокалу до продакшну,
 зведення та фінального мастерингу.
 </p>
+
 <div class="hero-buttons">
 <a href="#track" data-key="listenBtn">СЛУХАТИ</a>
 <a href="#about" data-key="aboutBtn">ПРО МЕНЕ</a>
 <a href="#gallery" data-key="galleryBtn">ГАЛЕРЕЯ</a>
 <a href="#contact" data-key="contactBtn">КОНТАКТ</a>
 </div>
+
 </div>
+
 <div class="hero-image">
 <img src="images/hero.jpg" alt="MALOSLOV">
 </div>
-</section>
-<section class="container" id="about">
-<div class="about">
-<div class="about-image">
-<img src="images/about.jpg" alt="About MALOSLOV">
+
 </div>
+</section>
+
+<section id="about">
+
+<div class="container about-grid">
+
+<div class="about-image">
+<img src="images/about.jpg" alt="">
+</div>
+
 <div>
-<div class="eyebrow">
+
+<div class="section-label">
 ABOUT
 </div>
-<h2 class="section-title" data-key="aboutTitle">
+
+<h2 class="about-title" data-key="aboutTitle">
 НЕЗАЛЕЖНИЙ
 МУЛЬТИЖАНРОВИЙ
 АРТИСТ.
 </h2>
+
 <p class="about-text" data-key="aboutText">
 MALOSLOV займається музикою понад десять років —
 від вивчення гітари до створення студійного середовища
 та співпраці з артистами у різних напрямках.
+
 <br><br>
+
 Кожен трек створюється самостійно:
 написання, запис, продакшн, зведення та мастеринг.
+
 <br><br>
+
 Музика залишається одночасно особистою терапією
 та способом передавати емоції через атмосферу і звук.
 </p>
+
 </div>
+
 </div>
 </section>
+
 <section class="track" id="track">
+
 <div class="container track-grid">
+
 <div class="track-cover">
-<img src="images/dubai-airlines-cover.jpg" alt="Dubai Airlines">
+<img src="images/dubai-airlines-cover.jpg" alt="">
 </div>
+
 <div>
-<div class="eyebrow">
+
+<div class="section-label">
 TOP TRACK
 </div>
-<h2 class="section-title">
-DUBAI
-AIRLINES
+
+<h2 class="track-title">
+DUBAI AIRLINES
 </h2>
+
 <p class="track-desc">
 Найбільш прослуховуваний реліз MALOSLOV
 у колаборації з артистом KAZZ.
 </p>
+
 <a
 class="listen-btn"
 href="https://song.link/i/1757498453"
@@ -381,60 +600,94 @@ target="_blank"
 >
 LISTEN NOW
 </a>
+
 </div>
+
 </div>
 </section>
+
 <section class="gallery" id="gallery">
+
 <div class="container">
-<div class="eyebrow">
+
+<div class="section-label">
 STUDIO MOMENTS
 </div>
-<h2 class="section-title">
-ЗА
-ЗВУКОМ
+
+<h2 class="gallery-title">
+ЗА ЗВУКОМ
 </h2>
+
 <div class="gallery-grid">
+
 <img src="images/studio-1.jpg" alt="">
 <img src="images/studio-2.jpg" alt="">
 <img src="images/studio-3.jpg" alt="">
+
 </div>
+
 </div>
 </section>
-<section class="contact container" id="contact">
-<h2 class="section-title">
+
+<section class="contact" id="contact">
+
+<div class="container">
+
+<h2 class="contact-title">
 CONTACT
 </h2>
+
 <div class="contact-links">
+
 <a href="https://instagram.com/malosslovv" target="_blank">
 INSTAGRAM
 </a>
+
 <a href="https://open.spotify.com/artist/1sMB58s4bxwgYryrz2X7Xx?si=yarsntyYQwyKSGkjWfbKQQ" target="_blank">
 SPOTIFY
 </a>
+
 <a href="https://music.apple.com/ru/artist/maloslov/1524225095" target="_blank">
 APPLE MUSIC
 </a>
+
 <a href="https://soundcloud.com/maloslov" target="_blank">
 SOUNDCLOUD
 </a>
+
 <a href="https://youtube.com/@malosslovv" target="_blank">
 YOUTUBE
 </a>
+
 <a href="https://t.me/malosv" target="_blank">
 TELEGRAM
 </a>
+
+</div>
+
 </div>
 </section>
+
 <footer>
+
+<div class="container footer-inner">
+
 <div>
 MALOSLOV © 2026
 </div>
+
 <div>
 SILENT MONOCHROME EXPERIENCE
 </div>
+
+</div>
+
 </footer>
+
 <script>
-const translations={
+
+const translations = {
+
 ua:{
 heroText:"Музика як спосіб передавати внутрішні емоції через звук. Від написання тексту та запису вокалу до продакшну, зведення та фінального мастерингу.",
 listenBtn:"СЛУХАТИ",
@@ -442,8 +695,9 @@ aboutBtn:"ПРО МЕНЕ",
 galleryBtn:"ГАЛЕРЕЯ",
 contactBtn:"КОНТАКТ",
 aboutTitle:"НЕЗАЛЕЖНИЙ МУЛЬТИЖАНРОВИЙ АРТИСТ.",
-aboutText:"MALOSLOV займається музикою понад десять років — від вивчення гітари до створення студійного середовища та співпраці з артистами у різних напрямках. \n\nКожен трек створюється самостійно: написання, запис, продакшн, зведення та мастеринг. \n\nМузика залишається одночасно особистою терапією та способом передавати емоції через атмосферу і звук."
+aboutText:"MALOSLOV займається музикою понад десять років — від вивчення гітари до створення студійного середовища та співпраці з артистами у різних напрямках.\n\nКожен трек створюється самостійно: написання, запис, продакшн, зведення та мастеринг.\n\nМузика залишається одночасно особистою терапією та способом передавати емоції через атмосферу і звук."
 },
+
 ru:{
 heroText:"Музыка как способ передавать внутренние эмоции через звук. От написания текста и записи вокала до продакшна, сведения и финального мастеринга.",
 listenBtn:"СЛУШАТЬ",
@@ -451,8 +705,9 @@ aboutBtn:"ОБО МНЕ",
 galleryBtn:"ГАЛЕРЕЯ",
 contactBtn:"КОНТАКТ",
 aboutTitle:"НЕЗАВИСИМЫЙ МУЛЬТИЖАНРОВЫЙ АРТИСТ.",
-aboutText:"MALOSLOV занимается музыкой более десяти лет — от изучения гитары до создания студийной среды и сотрудничества с артистами в разных направлениях. \n\nКаждый трек создается самостоятельно: написание, запись, продакшн, сведение и мастеринг. \n\nМузыка остается одновременно личной терапией и способом передавать эмоции через атмосферу и звук."
+aboutText:"MALOSLOV занимается музыкой более десяти лет — от изучения гитары до создания студийной среды и сотрудничества с артистами в разных направлениях.\n\nКаждый трек создается самостоятельно: написание, запись, продакшн, сведение и мастеринг.\n\nМузыка остается одновременно личной терапией и способом передавать эмоции через атмосферу и звук."
 },
+
 en:{
 heroText:"Music as a way to translate inner emotions into sound. From songwriting and vocal recording to production, mixing and final mastering.",
 listenBtn:"LISTEN",
@@ -460,23 +715,37 @@ aboutBtn:"ABOUT",
 galleryBtn:"GALLERY",
 contactBtn:"CONTACT",
 aboutTitle:"INDEPENDENT MULTI-GENRE ARTIST.",
-aboutText:"MALOSLOV has been involved in music for over ten years — from learning guitar to building studio environments and collaborating with artists across multiple creative directions. \n\nEvery track is developed independently: songwriting, recording, production, mixing and mastering. \n\nMusic remains both a personal form of therapy and a way to translate emotions into atmosphere and sound."
+aboutText:"MALOSLOV has been involved in music for over ten years — from learning guitar to building studio environments and collaborating with artists across multiple creative directions.\n\nEvery track is developed independently: songwriting, recording, production, mixing and mastering.\n\nMusic remains both a personal form of therapy and a way to translate emotions into atmosphere and sound."
 }
+
 };
-const buttons=document.querySelectorAll('.lang-btn');
-buttons.forEach(btn=>{
-btn.addEventListener('click',()=>{
-buttons.forEach(el=>el.classList.remove('active'));
+
+const buttons = document.querySelectorAll('.lang-btn');
+
+buttons.forEach(btn => {
+
+btn.addEventListener('click', () => {
+
+buttons.forEach(el => el.classList.remove('active'));
 btn.classList.add('active');
-const lang=btn.dataset.lang;
-document.querySelectorAll('[data-key]').forEach(el=>{
-const key=el.dataset.key;
+
+const lang = btn.dataset.lang;
+
+document.querySelectorAll('[data-key]').forEach(el => {
+
+const key = el.dataset.key;
+
 if(translations[lang][key]){
-el.innerText=translations[lang][key];
+el.innerText = translations[lang][key];
 }
+
 });
+
 });
+
 });
+
 </script>
+
 </body>
 </html>

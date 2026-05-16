@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8" />
+<meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
 <title>MALOSLOV</title>
@@ -314,10 +314,14 @@ gap:24px;
 width:100%;
 aspect-ratio:0.8;
 object-fit:cover;
-transition:0.4s;
+filter:grayscale(100%);
+transition:
+filter 0.5s ease,
+transform 0.5s ease;
 }
 
 .gallery-grid img:hover{
+filter:grayscale(0%);
 transform:translateY(-6px);
 }
 
@@ -400,7 +404,7 @@ grid-template-columns:1fr 1fr;
 
 header{
 padding:0 18px;
-height:70px;
+height:72px;
 }
 
 .logo{
@@ -410,59 +414,94 @@ letter-spacing:4px;
 
 .hero{
 min-height:auto;
-padding:110px 20px 60px;
-align-items:flex-end;
+padding:72px 0 0;
+display:flex;
+flex-direction:column;
+overflow:hidden;
+background:#f3f3f0;
+}
+
+.hero-image{
+position:relative;
+width:100%;
+height:68vh;
+min-height:540px;
+overflow:hidden;
+}
+
+.hero-image img{
+width:100%;
+height:100%;
+object-fit:cover;
+object-position:center top;
 }
 
 .hero-overlay{
 background:
 linear-gradient(
 180deg,
-rgba(243,243,240,0.2) 0%,
-rgba(243,243,240,0.75) 58%,
-rgba(243,243,240,0.97) 100%
+rgba(243,243,240,0.02) 0%,
+rgba(243,243,240,0.18) 38%,
+rgba(243,243,240,0.82) 76%,
+rgba(243,243,240,1) 100%
 );
 }
 
-.hero-image img{
-object-fit:contain;
-object-position:center top;
-padding-top:74px;
-background:#f3f3f0;
+.hero-content{
+position:relative;
+z-index:5;
+margin-top:-110px;
+padding:0 24px 56px;
+max-width:100%;
 }
 
-.hero-content{
-max-width:100%;
-padding-top:72vw;
+.hero-sub{
+font-size:10px;
+letter-spacing:6px;
+line-height:1.8;
+margin-bottom:20px;
 }
 
 .hero-title{
-font-size:64px;
+font-size:72px;
+line-height:0.9;
 letter-spacing:-4px;
-margin-bottom:18px;
+margin-bottom:22px;
 }
 
 .hero-text{
 font-size:16px;
-line-height:1.8;
+line-height:1.9;
+max-width:100%;
+margin-bottom:34px;
 }
 
 .hero-buttons{
+display:grid;
+grid-template-columns:1fr 1fr;
 gap:10px;
 }
 
 .hero-buttons a{
-padding:14px 18px;
+width:100%;
+padding:15px 12px;
+text-align:center;
 font-size:10px;
 letter-spacing:2px;
 }
 
 section{
-padding:90px 20px;
+padding:90px 22px;
+}
+
+.about{
+grid-template-columns:1fr;
+gap:40px;
 }
 
 .about-title{
 font-size:54px;
+line-height:0.92;
 }
 
 .about-text{
@@ -470,17 +509,13 @@ font-size:17px;
 line-height:1.9;
 }
 
+.track{
+grid-template-columns:1fr;
+gap:40px;
+}
+
 .track-title{
 font-size:64px;
-}
-
-.track-desc{
-font-size:16px;
-}
-
-.gallery-title{
-font-size:56px;
-margin-bottom:40px;
 }
 
 .gallery-grid{
@@ -492,7 +527,7 @@ font-size:64px;
 }
 
 .contact-links{
-gap:12px;
+flex-direction:column;
 }
 
 .contact-links a{
@@ -502,6 +537,7 @@ width:100%;
 footer{
 padding:32px 20px;
 flex-direction:column;
+gap:14px;
 }
 
 }
@@ -518,9 +554,9 @@ MALOSLOV
 </div>
 
 <div class="lang-switch">
-<span class="lang-btn" data-lang="ru">RU</span>
+<span class="lang-btn active" data-lang="ru">RU</span>
 <span class="lang-btn" data-lang="en">EN</span>
-<span class="lang-btn active" data-lang="ua">UA</span>
+<span class="lang-btn" data-lang="ua">UA</span>
 </div>
 
 </header>
@@ -556,19 +592,19 @@ MALOSLOV
 </h1>
 
 <p class="hero-text" data-key="heroText">
-Музика як спосіб передавати внутрішні емоції через звук.
-Від написання тексту та запису вокалу до продакшну,
-зведення та фінального мастерингу.
+Музыка как способ передавать внутренние эмоции через звук.
+От написания текста и записи вокала до продакшна,
+сведения и финального мастеринга.
 </p>
 
 <div class="hero-buttons">
 
 <a href="#track" data-key="listenBtn">
-СЛУХАТИ
+СЛУШАТЬ
 </a>
 
 <a href="#about" data-key="aboutBtn">
-ПРО МЕНЕ
+ОБО МНЕ
 </a>
 
 <a href="#gallery" data-key="galleryBtn">
@@ -598,23 +634,23 @@ ABOUT
 </div>
 
 <h2 class="about-title" data-key="aboutTitle">
-НЕЗАЛЕЖНИЙ МУЛЬТИЖАНРОВИЙ АРТИСТ.
+НЕЗАВИСИМЫЙ МУЛЬТИЖАНРОВЫЙ АРТИСТ.
 </h2>
 
 <p class="about-text" data-key="aboutText">
-MALOSLOV займається музикою понад десять років —
-від вивчення гітари до створення студійного середовища
-та співпраці з артистами у різних напрямках.
+MALOSLOV занимается музыкой более десяти лет —
+от изучения гитары до создания студийной среды
+и сотрудничества с артистами в разных направлениях.
 
 <br><br>
 
-Кожен трек створюється самостійно:
-написання, запис, продакшн, зведення та мастеринг.
+Каждый трек создается самостоятельно:
+написание, запись, продакшн, сведение и мастеринг.
 
 <br><br>
 
-Музика залишається одночасно особистою терапією
-та способом передавати емоції через атмосферу і звук.
+Музыка остается одновременно личной терапией
+и способом передавать эмоции через атмосферу и звук.
 </p>
 
 </div>
@@ -638,8 +674,8 @@ DUBAI AIRLINES
 </h2>
 
 <p class="track-desc">
-Найбільш прослуховуваний реліз MALOSLOV
-у колаборації з артистом KAZZ.
+Наиболее прослушиваемый релиз MALOSLOV
+в коллаборации с артистом KAZZ.
 </p>
 
 <a
@@ -725,16 +761,6 @@ SILENT MONOCHROME EXPERIENCE
 
 const translations = {
 
-ua:{
-heroText:"Музика як спосіб передавати внутрішні емоції через звук. Від написання тексту та запису вокалу до продакшну, зведення та фінального мастерингу.",
-listenBtn:"СЛУХАТИ",
-aboutBtn:"ПРО МЕНЕ",
-galleryBtn:"ГАЛЕРЕЯ",
-contactBtn:"КОНТАКТ",
-aboutTitle:"НЕЗАЛЕЖНИЙ МУЛЬТИЖАНРОВИЙ АРТИСТ.",
-aboutText:"MALOSLOV займається музикою понад десять років — від вивчення гітари до створення студійного середовища та співпраці з артистами у різних напрямках.\n\nКожен трек створюється самостійно: написання, запис, продакшн, зведення та мастеринг.\n\nМузика залишається одночасно особистою терапією та способом передавати емоції через атмосферу і звук."
-},
-
 ru:{
 heroText:"Музыка как способ передавать внутренние эмоции через звук. От написания текста и записи вокала до продакшна, сведения и финального мастеринга.",
 listenBtn:"СЛУШАТЬ",
@@ -753,6 +779,16 @@ galleryBtn:"GALLERY",
 contactBtn:"CONTACT",
 aboutTitle:"INDEPENDENT MULTI-GENRE ARTIST.",
 aboutText:"MALOSLOV has been involved in music for over ten years — from learning guitar to building studio environments and collaborating with artists across multiple creative directions.\n\nEvery track is developed independently: songwriting, recording, production, mixing and mastering.\n\nMusic remains both a personal form of therapy and a way to translate emotions into atmosphere and sound."
+},
+
+ua:{
+heroText:"Музика як спосіб передавати внутрішні емоції через звук. Від написання тексту та запису вокалу до продакшну, зведення та фінального мастерингу.",
+listenBtn:"СЛУХАТИ",
+aboutBtn:"ПРО МЕНЕ",
+galleryBtn:"ГАЛЕРЕЯ",
+contactBtn:"КОНТАКТ",
+aboutTitle:"НЕЗАЛЕЖНИЙ МУЛЬТИЖАНРОВИЙ АРТИСТ.",
+aboutText:"MALOSLOV займається музикою понад десять років — від вивчення гітари до створення студійного середовища та співпраці з артистами у різних напрямках.\n\nКожен трек створюється самостійно: написання, запис, продакшн, зведення та мастеринг.\n\nМузика залишається одночасно особистою терапією та способом передавати емоції через атмосферу і звук."
 }
 
 };

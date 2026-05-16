@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
 <title>MALOSLOV</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 
 <style>
 
@@ -27,7 +26,6 @@ font-family:'Inter',sans-serif;
 background:#f3f3f0;
 color:#0b0b0b;
 overflow-x:hidden;
--webkit-font-smoothing:antialiased;
 }
 
 img{
@@ -41,51 +39,51 @@ color:inherit;
 }
 
 :root{
---container:1440px;
+--bg:#f3f3f0;
+--text:#0b0b0b;
+--muted:rgba(0,0,0,0.45);
+--line:rgba(0,0,0,0.08);
 }
 
-.container{
-width:100%;
-max-width:var(--container);
-margin:0 auto;
-padding:0 40px;
-}
+/* HEADER */
 
 header{
 position:fixed;
 top:0;
 left:0;
 width:100%;
-z-index:1000;
-background:rgba(243,243,240,0.88);
-backdrop-filter:blur(14px);
-border-bottom:1px solid rgba(0,0,0,0.05);
-}
-
-.header-inner{
-height:84px;
+height:78px;
+padding:0 32px;
 display:flex;
 align-items:center;
 justify-content:space-between;
+z-index:1000;
+background:rgba(243,243,240,0.82);
+backdrop-filter:blur(16px);
+border-bottom:1px solid var(--line);
 }
 
 .logo{
-font-size:20px;
+font-size:16px;
 font-weight:900;
-letter-spacing:5px;
+letter-spacing:6px;
+position:relative;
+z-index:3;
 }
 
 .lang-switch{
 display:flex;
 gap:14px;
+position:relative;
+z-index:3;
 }
 
 .lang-btn{
 font-size:11px;
 letter-spacing:2px;
-opacity:0.35;
+opacity:0.4;
 cursor:pointer;
-transition:0.25s;
+transition:0.3s;
 }
 
 .lang-btn.active{
@@ -93,30 +91,15 @@ opacity:1;
 font-weight:700;
 }
 
+/* HERO */
+
 .hero{
 position:relative;
 min-height:100vh;
 display:flex;
 align-items:flex-end;
+padding:120px 64px 72px;
 overflow:hidden;
-background:#ececea;
-}
-
-.hero-image{
-position:absolute;
-inset:0;
-display:flex;
-justify-content:center;
-align-items:center;
-pointer-events:none;
-}
-
-.hero-image img{
-width:100%;
-height:100%;
-object-fit:contain;
-object-position:center center;
-opacity:0.96;
 }
 
 .hero-overlay{
@@ -124,57 +107,78 @@ position:absolute;
 inset:0;
 background:
 linear-gradient(
-180deg,
-rgba(243,243,240,0.12) 0%,
-rgba(243,243,240,0.18) 30%,
-rgba(243,243,240,0.72) 100%
+90deg,
+rgba(243,243,240,0.95) 0%,
+rgba(243,243,240,0.86) 32%,
+rgba(243,243,240,0.25) 58%,
+rgba(243,243,240,0.02) 100%
 );
+z-index:1;
+}
+
+.hero-image{
+position:absolute;
+inset:0;
+z-index:0;
+overflow:hidden;
+}
+
+.hero-image picture{
+width:100%;
+height:100%;
+display:block;
+}
+
+.hero-image img{
+width:100%;
+height:100%;
+object-fit:cover;
+object-position:center center;
 }
 
 .hero-content{
 position:relative;
-z-index:3;
-padding-bottom:80px;
-max-width:760px;
+z-index:2;
+max-width:620px;
 }
 
 .hero-sub{
 font-size:11px;
 letter-spacing:6px;
-opacity:0.45;
-margin-bottom:24px;
+margin-bottom:26px;
+opacity:0.5;
 }
 
 .hero-title{
-font-size:clamp(76px,9vw,170px);
+font-size:clamp(72px,11vw,180px);
 line-height:0.9;
 font-weight:900;
-letter-spacing:-6px;
+letter-spacing:-8px;
 margin-bottom:28px;
 }
 
 .hero-text{
-max-width:560px;
 font-size:18px;
 line-height:1.9;
+max-width:540px;
 opacity:0.72;
-margin-bottom:40px;
+margin-bottom:42px;
 }
 
 .hero-buttons{
 display:flex;
-gap:12px;
 flex-wrap:wrap;
+gap:14px;
 }
 
 .hero-buttons a{
-padding:16px 24px;
-border:1px solid rgba(0,0,0,0.08);
+padding:16px 26px;
+border:1px solid rgba(0,0,0,0.1);
 font-size:11px;
 letter-spacing:3px;
 transition:0.3s;
 background:rgba(255,255,255,0.4);
-backdrop-filter:blur(8px);
+backdrop-filter:blur(10px);
 }
 
 .hero-buttons a:hover{
@@ -182,55 +186,58 @@ background:#0b0b0b;
 color:#fff;
 }
 
+/* SECTIONS */
+
 section{
-padding:120px 0;
+padding:140px 64px;
 }
 
-.about-grid{
+/* ABOUT */
+
+.about{
 display:grid;
-grid-template-columns:520px 1fr;
+grid-template-columns:420px 1fr;
 gap:80px;
 align-items:center;
 }
 
 .about-image img{
 width:100%;
-aspect-ratio:0.78;
+aspect-ratio:4/5;
 object-fit:cover;
 }
 
-.section-label{
+.about-label{
 font-size:11px;
 letter-spacing:6px;
-opacity:0.35;
-margin-bottom:22px;
+opacity:0.4;
+margin-bottom:26px;
 }
 
 .about-title{
-font-size:clamp(48px,5vw,92px);
-line-height:0.92;
+font-size:clamp(56px,7vw,128px);
+line-height:0.9;
 font-weight:900;
-letter-spacing:-4px;
-max-width:760px;
-margin-bottom:34px;
+letter-spacing:-5px;
+margin-bottom:38px;
+max-width:950px;
 }
 
 .about-text{
-max-width:620px;
-font-size:18px;
+font-size:20px;
 line-height:2;
+max-width:760px;
 opacity:0.72;
 }
+
+/* TRACK */
 
 .track{
 background:#050505;
 color:#fff;
-}
-
-.track-grid{
 display:grid;
 grid-template-columns:360px 1fr;
-gap:70px;
+gap:80px;
 align-items:center;
 }
 
@@ -238,27 +245,33 @@ align-items:center;
 width:100%;
 }
 
+.track-label{
+font-size:11px;
+letter-spacing:6px;
+opacity:0.45;
+margin-bottom:24px;
+}
+
 .track-title{
-font-size:clamp(54px,6vw,110px);
+font-size:clamp(54px,7vw,140px);
 line-height:0.9;
 font-weight:900;
-letter-spacing:-4px;
-margin-bottom:26px;
+margin-bottom:30px;
 }
 
 .track-desc{
-font-size:18px;
+font-size:19px;
 line-height:1.9;
 opacity:0.72;
 max-width:620px;
-margin-bottom:34px;
+margin-bottom:40px;
 }
 
 .listen-btn{
 display:inline-flex;
 align-items:center;
 justify-content:center;
-padding:16px 24px;
+padding:18px 34px;
 border:1px solid rgba(255,255,255,0.14);
 font-size:11px;
 letter-spacing:3px;
@@ -270,59 +283,66 @@ background:#fff;
 color:#000;
 }
 
+/* GALLERY */
+
 .gallery{
-background:#0a0a0a;
+background:#000;
 color:#fff;
 }
 
+.gallery-label{
+font-size:11px;
+letter-spacing:6px;
+opacity:0.4;
+margin-bottom:22px;
+}
+
 .gallery-title{
-font-size:clamp(48px,5vw,92px);
+font-size:clamp(60px,8vw,160px);
 line-height:0.9;
 font-weight:900;
-letter-spacing:-3px;
-margin-bottom:48px;
+margin-bottom:70px;
 }
 
 .gallery-grid{
 display:grid;
 grid-template-columns:repeat(3,1fr);
-gap:18px;
+gap:24px;
 }
 
 .gallery-grid img{
 width:100%;
-height:620px;
+aspect-ratio:0.8;
 object-fit:cover;
-transition:0.35s;
+transition:0.4s;
 }
 
 .gallery-grid img:hover{
-transform:translateY(-4px);
+transform:translateY(-6px);
 }
 
+/* CONTACT */
+
 .contact{
-padding-top:100px;
-padding-bottom:100px;
 text-align:center;
 }
 
 .contact-title{
-font-size:clamp(44px,5vw,90px);
+font-size:clamp(58px,8vw,140px);
 line-height:0.9;
 font-weight:900;
-letter-spacing:-3px;
-margin-bottom:38px;
+margin-bottom:48px;
 }
 
 .contact-links{
 display:flex;
 justify-content:center;
 flex-wrap:wrap;
-gap:14px;
+gap:16px;
 }
 
 .contact-links a{
-padding:16px 22px;
+padding:18px 24px;
 border:1px solid rgba(0,0,0,0.08);
 font-size:11px;
 letter-spacing:3px;
@@ -334,112 +354,97 @@ background:#000;
 color:#fff;
 }
 
-footer{
-padding:34px 0;
-border-top:1px solid rgba(0,0,0,0.05);
-}
+/* FOOTER */
 
-.footer-inner{
+footer{
+padding:40px 64px;
 display:flex;
 justify-content:space-between;
 flex-wrap:wrap;
 gap:20px;
 font-size:11px;
-letter-spacing:3px;
-opacity:0.45;
+letter-spacing:4px;
+opacity:0.4;
+border-top:1px solid rgba(0,0,0,0.05);
 }
+
+/* TABLET */
 
 @media(max-width:1100px){
 
 .hero{
-min-height:auto;
-padding-top:120px;
+padding:140px 40px 60px;
 }
 
-.hero-content{
-padding-bottom:60px;
+section{
+padding:110px 40px;
 }
 
-.hero-title{
-font-size:92px;
-}
-
-.about-grid{
+.about{
 grid-template-columns:1fr;
-gap:50px;
 }
 
-.track-grid{
+.track{
 grid-template-columns:1fr;
-gap:50px;
 }
 
 .gallery-grid{
 grid-template-columns:1fr 1fr;
 }
 
-.gallery-grid img{
-height:480px;
 }
 
-}
+/* MOBILE */
 
 @media(max-width:768px){
 
-.container{
-padding:0 22px;
-}
-
-.header-inner{
-height:76px;
+header{
+padding:0 18px;
+height:70px;
 }
 
 .logo{
-font-size:18px;
+font-size:14px;
+letter-spacing:4px;
 }
 
 .hero{
 min-height:auto;
-padding-top:110px;
-padding-bottom:40px;
-align-items:flex-start;
-}
-
-.hero-image{
-position:relative;
-height:auto;
-padding-top:20px;
-margin-bottom:40px;
-}
-
-.hero{
-display:block;
-}
-
-.hero-image img{
-height:auto;
-max-height:none;
-object-fit:contain;
+padding:110px 20px 60px;
+align-items:flex-end;
 }
 
 .hero-overlay{
-display:none;
+background:
+linear-gradient(
+180deg,
+rgba(243,243,240,0.2) 0%,
+rgba(243,243,240,0.75) 58%,
+rgba(243,243,240,0.97) 100%
+);
+}
+
+.hero-image img{
+object-fit:contain;
+object-position:center top;
+padding-top:74px;
+background:#f3f3f0;
 }
 
 .hero-content{
-padding-bottom:0;
+max-width:100%;
+padding-top:72vw;
 }
 
 .hero-title{
-font-size:62px;
-letter-spacing:-3px;
-margin-bottom:22px;
+font-size:64px;
+letter-spacing:-4px;
+margin-bottom:18px;
 }
 
 .hero-text{
-font-size:15px;
+font-size:16px;
 line-height:1.8;
-margin-bottom:30px;
 }
 
 .hero-buttons{
@@ -447,21 +452,21 @@ gap:10px;
 }
 
 .hero-buttons a{
-padding:14px 16px;
+padding:14px 18px;
 font-size:10px;
+letter-spacing:2px;
 }
 
 section{
-padding:90px 0;
+padding:90px 20px;
 }
 
 .about-title{
 font-size:54px;
-letter-spacing:-2px;
 }
 
 .about-text{
-font-size:15px;
+font-size:17px;
 line-height:1.9;
 }
 
@@ -470,45 +475,33 @@ font-size:64px;
 }
 
 .track-desc{
-font-size:15px;
+font-size:16px;
 }
 
 .gallery-title{
 font-size:56px;
-margin-bottom:34px;
+margin-bottom:40px;
 }
 
 .gallery-grid{
 grid-template-columns:1fr;
-gap:14px;
-}
-
-.gallery-grid img{
-height:auto;
-}
-
-.contact{
-padding-top:80px;
-padding-bottom:80px;
 }
 
 .contact-title{
-font-size:58px;
-margin-bottom:30px;
+font-size:64px;
 }
 
 .contact-links{
-gap:10px;
+gap:12px;
 }
 
 .contact-links a{
-padding:14px 16px;
-font-size:10px;
+width:100%;
 }
 
-.footer-inner{
+footer{
+padding:32px 20px;
 flex-direction:column;
-gap:10px;
 }
 
 }
@@ -520,8 +513,6 @@ gap:10px;
 
 <header>
 
-<div class="container header-inner">
-
 <div class="logo">
 MALOSLOV
 </div>
@@ -532,19 +523,27 @@ MALOSLOV
 <span class="lang-btn active" data-lang="ua">UA</span>
 </div>
 
-</div>
-
 </header>
 
 <section class="hero">
 
 <div class="hero-image">
-<img src="images/hero.jpg" alt="MALOSLOV">
+
+<picture>
+
+<source
+media="(max-width: 768px)"
+srcset="images/hero-mobile.jpg">
+
+<img
+src="images/hero-desktop.jpg"
+alt="MALOSLOV">
+
+</picture>
+
 </div>
 
 <div class="hero-overlay"></div>
-
-<div class="container">
 
 <div class="hero-content">
 
@@ -563,11 +562,22 @@ MALOSLOV
 </p>
 
 <div class="hero-buttons">
-<a href="#track" data-key="listenBtn">СЛУХАТИ</a>
-<a href="#about" data-key="aboutBtn">ПРО МЕНЕ</a>
-<a href="#gallery" data-key="galleryBtn">ГАЛЕРЕЯ</a>
-<a href="#contact" data-key="contactBtn">КОНТАКТ</a>
-</div>
+
+<a href="#track" data-key="listenBtn">
+СЛУХАТИ
+</a>
+
+<a href="#about" data-key="aboutBtn">
+ПРО МЕНЕ
+</a>
+
+<a href="#gallery" data-key="galleryBtn">
+ГАЛЕРЕЯ
+</a>
+
+<a href="#contact" data-key="contactBtn">
+КОНТАКТ
+</a>
 
 </div>
 
@@ -575,9 +585,7 @@ MALOSLOV
 
 </section>
 
-<section id="about">
-
-<div class="container about-grid">
+<section class="about" id="about">
 
 <div class="about-image">
 <img src="images/about.jpg" alt="">
@@ -585,14 +593,12 @@ MALOSLOV
 
 <div>
 
-<div class="section-label">
+<div class="about-label">
 ABOUT
 </div>
 
 <h2 class="about-title" data-key="aboutTitle">
-НЕЗАЛЕЖНИЙ
-МУЛЬТИЖАНРОВИЙ
-АРТИСТ.
+НЕЗАЛЕЖНИЙ МУЛЬТИЖАНРОВИЙ АРТИСТ.
 </h2>
 
 <p class="about-text" data-key="aboutText">
@@ -613,13 +619,9 @@ MALOSLOV займається музикою понад десять років 
 
 </div>
 
-</div>
-
 </section>
 
 <section class="track" id="track">
-
-<div class="container track-grid">
 
 <div class="track-cover">
 <img src="images/dubai-airlines-cover.jpg" alt="">
@@ -627,7 +629,7 @@ MALOSLOV займається музикою понад десять років 
 
 <div>
 
-<div class="section-label">
+<div class="track-label">
 TOP TRACK
 </div>
 
@@ -643,12 +645,9 @@ DUBAI AIRLINES
 <a
 class="listen-btn"
 href="https://song.link/i/1757498453"
-target="_blank"
->
+target="_blank">
 LISTEN NOW
 </a>
-
-</div>
 
 </div>
 
@@ -656,9 +655,7 @@ LISTEN NOW
 
 <section class="gallery" id="gallery">
 
-<div class="container">
-
-<div class="section-label">
+<div class="gallery-label">
 STUDIO MOMENTS
 </div>
 
@@ -674,13 +671,9 @@ STUDIO MOMENTS
 
 </div>
 
-</div>
-
 </section>
 
 <section class="contact" id="contact">
-
-<div class="container">
 
 <h2 class="contact-title">
 CONTACT
@@ -714,13 +707,9 @@ TELEGRAM
 
 </div>
 
-</div>
-
 </section>
 
 <footer>
-
-<div class="container footer-inner">
 
 <div>
 MALOSLOV © 2026
@@ -728,8 +717,6 @@ MALOSLOV © 2026
 
 <div>
 SILENT MONOCHROME EXPERIENCE
-</div>
-
 </div>
 
 </footer>
@@ -770,23 +757,24 @@ aboutText:"MALOSLOV has been involved in music for over ten years — from learn
 
 };
 
-const buttons = document.querySelectorAll('.lang-btn');
+const buttons=document.querySelectorAll('.lang-btn');
 
-buttons.forEach(btn => {
+buttons.forEach(btn=>{
 
-btn.addEventListener('click', () => {
+btn.addEventListener('click',()=>{
 
-buttons.forEach(el => el.classList.remove('active'));
+buttons.forEach(el=>el.classList.remove('active'));
+
 btn.classList.add('active');
 
-const lang = btn.dataset.lang;
+const lang=btn.dataset.lang;
 
-document.querySelectorAll('[data-key]').forEach(el => {
+document.querySelectorAll('[data-key]').forEach(el=>{
 
-const key = el.dataset.key;
+const key=el.dataset.key;
 
 if(translations[lang][key]){
-el.innerText = translations[lang][key];
+el.innerText=translations[lang][key];
 }
 
 });

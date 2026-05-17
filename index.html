@@ -15,7 +15,7 @@
       --text-dark: #0b0b0b;
       --bg-dark: #050505;
       --text-light: #ffffff;
-      --transition-smooth: cubic-bezier(0.25, 1, 0.5, 1);
+      --transition-smooth: cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     * {
@@ -46,6 +46,32 @@
     a {
       text-decoration: none;
       color: inherit;
+    }
+
+    /* --- КАСТОМНЫЙ КУРСОР (ПК) --- */
+    .custom-cursor {
+      width: 8px;
+      height: 8px;
+      background: var(--text-dark);
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: width 0.3s var(--transition-smooth), height 0.3s var(--transition-smooth), background-color 0.3s ease;
+    }
+    .custom-cursor.hovered {
+      width: 40px;
+      height: 40px;
+      background: rgba(11, 11, 11, 0.1);
+      border: 1px solid var(--text-dark);
+    }
+    .dark-section .custom-cursor {
+      background: var(--text-light);
+    }
+    .dark-section .custom-cursor.hovered {
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid var(--text-light);
     }
 
     /* --- ШАПКА --- */
@@ -93,12 +119,23 @@
       font-weight: 900;
     }
 
-    /* --- СЕКЦИИ (ОБЩЕЕ) --- */
-    section {
-      padding: 120px 8% 100px;
+    /* --- АНИМАЦИЯ ПОЯВЛЕНИЯ ПРИ СКРОЛЛЕ --- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 1.2s var(--transition-smooth), transform 1.2s var(--transition-smooth);
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
     }
 
-    /* --- HERO (ГЛАВНЫЙ ЭКРАН) --- */
+    /* --- СЕКЦИИ (ОБЩЕЕ) --- */
+    section {
+      padding: 140px 8% 120px;
+    }
+
+    /* --- HERO --- */
     .hero {
       position: relative;
       min-height: 100vh;
@@ -108,7 +145,6 @@
       overflow: hidden;
     }
 
-    /* Фоновое изображение задается ТУТ для ПК */
     .hero-bg {
       position: absolute;
       inset: 0;
@@ -152,7 +188,7 @@
     }
 
     .hero-text {
-      font-size: clamp(16px, 1.8vw, 20px);
+      font-size: clamp(16px, 1.8vw, 19px);
       line-height: 1.7;
       opacity: 0.7;
       max-width: 640px;
@@ -172,7 +208,7 @@
       letter-spacing: 2px;
       font-weight: 500;
       text-align: center;
-      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+      transition: background-color 0.4s var(--transition-smooth), color 0.4s var(--transition-smooth), border-color 0.4s var(--transition-smooth);
       background: transparent;
     }
 
@@ -193,7 +229,7 @@
     .about-image img {
       width: 100%;
       filter: grayscale(100%);
-      transition: filter 0.6s var(--transition-smooth);
+      transition: filter 0.8s var(--transition-smooth);
       border-radius: 2px;
     }
 
@@ -224,27 +260,26 @@
       opacity: 0.7;
     }
 
-    /* --- TRACK --- */
+    /* --- TRACK (СЕКЦИЯ С ПЛЕЕРОМ) --- */
     .track {
       background: var(--bg-dark);
       color: var(--text-light);
       display: grid;
-      grid-template-columns: 1fr 1.5fr;
+      grid-template-columns: 1fr 1.3fr;
       gap: 8%;
       align-items: center;
     }
 
-    .track-cover img {
+    .track-player-container {
       width: 100%;
-      aspect-ratio: 1/1;
-      object-fit: cover;
-      filter: grayscale(100%);
-      transition: filter 0.6s var(--transition-smooth);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.5);
     }
 
-    .track-cover img:hover {
-      filter: grayscale(0%);
+    .track-player-container iframe {
+      display: block;
+      border: none;
+      width: 100%;
+      height: 300px;
     }
 
     .track-title {
@@ -299,7 +334,7 @@
       height: 500px;
       object-fit: cover;
       filter: grayscale(100%);
-      transition: transform 0.6s var(--transition-smooth), filter 0.6s var(--transition-smooth);
+      transition: transform 0.8s var(--transition-smooth), filter 0.8s var(--transition-smooth);
     }
 
     .gallery-grid img:hover {
@@ -310,7 +345,7 @@
     /* --- CONTACT --- */
     .contact {
       text-align: center;
-      padding: 140px 4% 120px;
+      padding: 160px 4% 140px;
     }
 
     .contact-title {
@@ -329,6 +364,11 @@
       margin: 0 auto;
     }
 
+    .contact-links .btn-style:hover {
+      background: var(--text-dark);
+      color: var(--text-light);
+    }
+
     /* --- FOOTER --- */
     footer {
       padding: 40px 8%;
@@ -343,8 +383,12 @@
 
     /* --- АДАПТИВНОСТЬ ПОД МОБИЛЬНЫЕ УСТРОЙСТВА --- */
     @media (max-width: 991px) {
+      .custom-cursor {
+        display: none !important;
+      }
+
       section {
-        padding: 80px 6% 70px;
+        padding: 90px 6% 80px;
       }
 
       header {
@@ -354,13 +398,12 @@
 
       .hero {
         padding-top: 130px;
-        min-height: 85vh; /* Делаем красивую высоту на телефонах */
+        min-height: 85vh;
       }
 
-      /* МАГИЯ ПРОИСХОДИТ ТУТ: подменяем фоновое изображение на мобильное */
       .hero-bg {
         background-image: url("./images/hero-mobile.jpg");
-        opacity: 0.22; /* Делаем чуть заметнее на мобильном */
+        opacity: 0.22;
         background-position: center center;
       }
 
@@ -380,13 +423,18 @@
 
       .about, .track {
         grid-template-columns: 1fr;
-        gap: 40px;
+        gap: 45px;
       }
 
-      .about-image, .track-cover {
+      .about-image {
         max-width: 450px;
         margin: 0 auto;
         width: 100%;
+      }
+
+      .track-player-container {
+        max-width: 500px;
+        margin: 0 auto;
       }
 
       .gallery-grid {
@@ -423,6 +471,9 @@
 
 <body>
 
+  <!-- Кастомный курсор -->
+  <div class="custom-cursor" id="cursor"></div>
+
   <header>
     <div class="logo">MALOSLOV</div>
     <div class="lang-switch">
@@ -433,17 +484,14 @@
   </header>
 
   <section class="hero">
-    <!-- Эти два блока отвечают за фоны. Никаких лишних картинок в HTML! -->
     <div class="hero-bg"></div>
     <div class="hero-overlay"></div>
 
     <div class="hero-content">
-      <div class="hero-sub">ARTIST / PRODUCER / SOUND ENGINEER</div>
+      <div class="hero-sub">ARTIST // MULTI-GENRE PRODUCER // SOUND ENGINEER</div>
       <h1 class="hero-title">MALOSLOV</h1>
       <p class="hero-text" data-key="heroText">
-        Музыка как способ передавать внутренние эмоции через звук.
-        От написания текста и записи вокала до продакшна,
-        сведения и финального мастеринга.
+        Я создаю музыку как пространство для глубоких внутренних эмоций. Управляю всем процессом производства: от написания концепта и текста до финального сведения и мастеринга.
       </p>
       <div class="hero-buttons">
         <a href="#track" data-key="btnListen">СЛУШАТЬ</a>
@@ -452,48 +500,47 @@
     </div>
   </section>
 
-  <section class="about" id="about">
+  <section class="about reveal" id="about">
     <div class="about-image">
-      <img src="./images/about.jpg" alt="About MALOSLOV">
+      <img src="./images/about.jpg" alt="Музыкальный артист MALOSLOV" loading="lazy">
     </div>
     <div>
-      <div class="section-label" data-key="labelAbout">ABOUT</div>
-      <h2 class="about-title" data-key="aboutTitle">НЕЗАВИСИМЫЙ МУЛЬТИЖАНРОВЫЙ АРТИСТ.</h2>
+      <div class="section-label" data-key="labelAbout">ОБ АРТИСТЕ</div>
+      <h2 class="about-title" data-key="aboutTitle">СОЗДАВАЯ СВОЙ ЗВУКОВОЙ МИР.</h2>
       <p class="about-text" data-key="aboutText">
-        MALOSLOV занимается музыкой более десяти лет — от изучения гитары до создания студийной среды и сотрудничества с артистами в разных направлениях.<br><br>
-        Каждый трек создается самостоятельно: написание, запись, продакшн, сведение и мастеринг.<br><br>
-        Музыка остается одновременно личной терапией и способом передавать эмоции через атмосферу и звук.
+        Я посвятил музыке более десяти лет. Прошел путь от изучения гитары до проектирования собственной студийной среды и продюсирования артистов в самых разных жанрах.<br><br>Каждый свой релиз я создаю «под ключ»: от первой строчки текста до финального мастеринг-компрессора. Для меня музыка — это одновременно личная терапия и способ транслировать чистую атмосферу через звук.
       </p>
     </div>
   </section>
 
-  <section class="track" id="track">
-    <div class="track-cover">
-      <img src="./images/dubai-airlines-cover.jpg" alt="Dubai Airlines Cover">
+  <section class="track dark-section reveal" id="track">
+    <div class="track-player-container">
+      <!-- Родной плеер SoundCloud с вашим треком DUBAI AIRLINES -->
+      <iframe src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1884487695&color=%23050505&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=true"></iframe>
     </div>
     <div>
-      <div class="section-label" data-key="labelTopTrack">TOP TRACK</div>
+      <div class="section-label" data-key="labelTopTrack">ГЛАВНЫЙ ТРЕК</div>
       <h2 class="track-title">DUBAI AIRLINES</h2>
       <p class="track-desc" data-key="trackDesc">
         Наиболее прослушиваемый релиз MALOSLOV в коллаборации с артистом KAZZ.
       </p>
       <a class="btn-style listen-btn" href="https://song.link/i/1757498453" target="_blank" data-key="btnListenNow">
-        LISTEN NOW
+        СЛУШАТЬ СЕЙЧАС
       </a>
     </div>
   </section>
 
-  <section class="gallery" id="gallery">
-    <div class="section-label" data-key="labelGallery">STUDIO MOMENTS</div>
+  <section class="gallery dark-section reveal" id="gallery">
+    <div class="section-label" data-key="labelGallery">СТУДИЙНЫЕ БУДНИ</div>
     <h2 class="gallery-title" data-key="galleryTitle">ЗА ЗВУКОМ</h2>
     <div class="gallery-grid">
-      <img src="./images/studio-1.jpg" alt="Studio Moment 1">
-      <img src="./images/studio-2.jpg" alt="Studio Moment 2">
-      <img src="./images/studio-3.jpg" alt="Studio Moment 3">
+      <img src="./images/studio-1.jpg" alt="Процесс записи на студии MALOSLOV" loading="lazy">
+      <img src="./images/studio-2.jpg" alt="Саунд-дизайн и сведение" loading="lazy">
+      <img src="./images/studio-3.jpg" alt="Аналоговое оборудование в студии" loading="lazy">
     </div>
   </section>
 
-  <section class="contact" id="contact">
+  <section class="contact reveal" id="contact">
     <h2 class="contact-title">CONTACT</h2>
     <div class="contact-links">
       <a class="btn-style" href="https://instagram.com/malosslovv" target="_blank">INSTAGRAM</a>
@@ -507,18 +554,18 @@
 
   <footer>
     <div>MALOSLOV © 2026</div>
-    <div data-key="footerTag">SILENT MONOCHROME EXPERIENCE</div>
+    <div data-key="footerTag">ТИХИЙ МОНОХРОМНЫЙ ОПЫТ</div>
   </footer>
 
   <script>
     const translations = {
       ru: {
-        heroText: "Музыка как способ передавать внутренние эмоции через звук. От написания текста и записи вокала до продакшна, сведения и финального мастеринга.",
+        heroText: "Я создаю музыку как пространство для глубоких внутренних эмоций. Управляю всем процессом производства: от написания концепта и текста до финального сведения и мастеринга.",
         btnListen: "СЛУШАТЬ",
         btnAbout: "ОБО МНЕ",
         labelAbout: "ОБ АРТИСТЕ",
-        aboutTitle: "НЕЗАВИСИМЫЙ МУЛЬТИЖАНРОВЫЙ АРТИСТ.",
-        aboutText: "MALOSLOV занимается музыкой более десяти лет — от изучения гитары до создания студийной среды и сотрудничества с артистами в разных направлениях.<br><br>Каждый трек создается самостоятельно: написание, запись, продакшн, сведение и мастеринг.<br><br>Музыка остается одновременно личной терапией и способом передавать эмоции через атмосферу и звук.",
+        aboutTitle: "СОЗДАВАЯ СВОЙ ЗВУКОВОЙ МИР.",
+        aboutText: "Я посвятил музыке более десяти лет. Прошел путь от изучения гитары до проектирования собственной студийной среды и продюсирования артистов в самых разных жанрах.<br><br>Каждый свой релиз я создаю «под ключ»: от первой строчки текста до финального мастеринг-компрессора. Для меня музыка — это одновременно личная терапия и способ транслировать чистую атмосферу через звук.",
         labelTopTrack: "ГЛАВНЫЙ ТРЕК",
         trackDesc: "Наиболее прослушиваемый релиз MALOSLOV в коллаборации с артистом KAZZ.",
         btnListenNow: "СЛУШАТЬ СЕЙЧАС",
@@ -527,12 +574,12 @@
         footerTag: "ТИХИЙ МОНОХРОМНЫЙ ОПЫТ"
       },
       en: {
-        heroText: "Music as a way to translate inner emotions into sound. From songwriting and vocal recording to production, mixing and final mastering.",
+        heroText: "I architect music as a canvas for deep inner emotions. Handling the entire creative cycle: from initial songwriting and vocal tracking to final mixing and mastering.",
         btnListen: "LISTEN",
         btnAbout: "ABOUT ME",
         labelAbout: "ABOUT",
-        aboutTitle: "INDEPENDENT MULTI-GENRE ARTIST.",
-        aboutText: "MALOSLOV has been involved in music for over ten years — from learning guitar to building studio environments and collaborating with artists across multiple creative directions.<br><br>Every track is developed independently: songwriting, recording, production, mixing and mastering.<br><br>Music remains both a personal form of therapy and a way to translate emotions into atmosphere and sound.",
+        aboutTitle: "ARCHITECTING MY OWN SONIC WORLD.",
+        aboutText: "I have dedicated over a decade to music. My journey evolved from learning guitar to building my own studio environment and producing for artists across diverse genres.<br><br>Every release is crafted entirely by me: from the first line of lyrics to the final mastering stage. Music remains both my personal therapy and a way to translate pure atmosphere into sound.",
         labelTopTrack: "TOP TRACK",
         trackDesc: "The most streamed release by MALOSLOV in collaboration with artist KAZZ.",
         btnListenNow: "LISTEN NOW",
@@ -541,12 +588,12 @@
         footerTag: "SILENT MONOCHROME EXPERIENCE"
       },
       ua: {
-        heroText: "Музика як спосіб передавати внутрішні емоції через звук. Від написання текста та запису вокалу до продакшну, зведення та фінального мастерингу.",
+        heroText: "Я створюю музику як простір для глибоких внутрішніх емоцій. Керую всім процессом виробництва: від написання концепту й тексту до фінального зведення та мастерингу.",
         btnListen: "СЛУХАТИ",
         btnAbout: "ПРО МЕНЕ",
         labelAbout: "ПРО АРТИСТА",
-        aboutTitle: "НЕЗАЛЕЖНИЙ МУЛЬТИЖАНРОВИЙ АРТИСТ.",
-        aboutText: "MALOSLOV займається музыкою понад десять років — від вивчення гітари до створення студійного середовища та співпраці з артистами у різних напрямках.<br><br>Кожен трек створюється самостійно: написання, запис, продакшн, зведення та мастеринг.<br><br>Музика залишається одночасно особистою терапією та способом передавати емоції через атмосферу і звук.",
+        aboutTitle: "СТВОРЮЮЧИ ВЛАСНИЙ ЗВУКОВИЙ СВІТ.",
+        aboutText: "Я присвятив музиці понад десять років. Прошов шлях від вивчення гітари до проектування власного студійного середовища та продюсування артистів у найрізноманітніших жанрах.<br><br>Кожен свій реліз я створюю «під ключ»: від першого рядка тексту до фінального мастерингу. Для мене музика — це одночасно особиста терапія та спосіб транслювати чисту атмосферу через звук.",
         labelTopTrack: "ГОЛОВНИЙ ТРЕК",
         trackDesc: "Найпопулярніший реліз MALOSLOV у колаборації з артистом KAZZ.",
         btnListenNow: "СЛУХАТИ ЗАРАЗ",
@@ -556,15 +603,13 @@
       }
     };
 
+    // Логика смены языков
     const buttons = document.querySelectorAll('.lang-btn');
-
     buttons.forEach(btn => {
       btn.addEventListener('click', () => {
         buttons.forEach(el => el.classList.remove('active'));
         btn.classList.add('active');
-
         const lang = btn.dataset.lang;
-
         document.querySelectorAll('[data-key]').forEach(el => {
           const key = el.dataset.key;
           if (translations[lang] && translations[lang][key]) {
@@ -573,6 +618,41 @@
         });
       });
     });
+
+    // --- ЛОГИКА КАСТОМНОГО КУРСОРA ---
+    const cursor = document.getElementById('cursor');
+    document.addEventListener('mousemove', (e) => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+    });
+
+    const interactiveElements = document.querySelectorAll('a, .lang-btn, iframe');
+    interactiveElements.forEach(el => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
+    });
+
+    const darkSections = document.querySelectorAll('.dark-section');
+    darkSections.forEach(section => {
+      section.addEventListener('mouseenter', () => cursor.parentElement.classList.add('dark-section'));
+      section.addEventListener('mouseleave', () => cursor.parentElement.classList.remove('dark-section'));
+    });
+
+    // --- АНИМАЦИЯ ПОЯВЛЕНИЯ ПРИ СКРОЛЛЕ (SCROLL REVEAL) ---
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealOnScroll = () => {
+      for (let i = 0; i < revealElements.length; i++) {
+        let windowHeight = window.innerHeight;
+        let elementTop = revealElements[i].getBoundingClientRect().top;
+        let elementVisible = 120;
+
+        if (elementTop < windowHeight - elementVisible) {
+          revealElements[i].classList.add('active');
+        }
+      }
+    };
+    window.addEventListener('scroll', revealOnScroll);
+    window.addEventListener('load', revealOnScroll);
   </script>
 </body>
 </html>

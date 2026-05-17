@@ -260,7 +260,7 @@
       opacity: 0.7;
     }
 
-    /* --- TRACK (ОБЛОЖКА + МИНИ-ПЛЕЕР) --- */
+    /* --- TRACK (ЧИСТАЯ ОБЛОЖКА БЕЗ ПЛЕЕРА) --- */
     .track {
       background: var(--bg-dark);
       color: var(--text-light);
@@ -282,15 +282,7 @@
       aspect-ratio: 1/1;
       object-fit: cover;
       display: block;
-      border-radius: 2px 2px 0 0;
-    }
-
-    .track-mini-player {
-      width: 100%;
-      height: 20px;
-      display: block;
-      border: none;
-      background: #000;
+      border-radius: 2px;
     }
 
     .track-title {
@@ -412,10 +404,11 @@
         min-height: 85vh;
       }
 
+      /* Исправление позиционирования фото и наложения на мобильных */
       .hero-bg {
         background-image: url("./images/hero-mobile.jpg");
-        opacity: 0.22;
-        background-position: center center;
+        opacity: 0.15;
+        background-position: center top; /* Фото прижато к верху, ноги уходят вниз */
       }
 
       .hero-content {
@@ -427,9 +420,16 @@
         margin-bottom: 20px;
       }
 
+      /* Стилизация кнопок для предотвращения жесткого наложения */
       .hero-buttons {
         grid-template-columns: 1fr;
         gap: 10px;
+      }
+      
+      .hero-buttons a {
+        background: rgba(243, 243, 240, 0.08);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
       }
 
       .about, .track {
@@ -525,8 +525,6 @@
   <section class="track dark-section reveal" id="track">
     <div class="track-media-wrapper">
       <img class="track-cover" src="./images/dubai-airlines-cover.jpg" alt="Обложка трека DUBAI AIRLINES" loading="lazy">
-      <!-- Использование прямой ссылки через кодирование параметров для 100% точности трека -->
-      <iframe class="track-mini-player" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/maloslov/maloslov-x-kazz-dubai-airlines-prodstrlzh&color=%23050505&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false"></iframe>
     </div>
     <div>
       <div class="section-label" data-key="labelTopTrack">ГЛАВНЫЙ ТРЕК</div>
@@ -603,7 +601,7 @@
         btnAbout: "ПРО МЕНЕ",
         labelAbout: "ПРО АРТИСТА",
         aboutTitle: "БІОГРАФІЯ",
-        aboutText: "Я пройшов шлях довжиною понад десять років: від вивчення гітары до проектування власного студійного середовища та роботи у різних музичних жанрах.<br><br>Кожен свій реліз я створюю «під ключ» — від написання першого рядка тексту до фінального мастеринг-компресора. Музыка для меня — это способ транслировать атмосферу та особисті переживання через звук.",
+        aboutText: "Я пройшов шлях довжиною понад десять років: від вивчення гітари до проектування власного студійного середовища та роботи у різних музичних жанрах.<br><br>Кожен свій реліз я створюю «під ключ» — від написання першого рядка тексту до фінального мастеринг-компресора. Музыка для меня — это способ транслировать атмосферу та особисті переживання через звук.",
         labelTopTrack: "ГОЛОВНИЙ ТРЕК",
         trackDesc: "Мій найпопулярніший реліз у колаборації з артистом KAZZ.",
         btnListenNow: "СЛУХАТИ ЗАРАЗ",
@@ -634,7 +632,7 @@
       cursor.style.top = e.clientY + 'px';
     });
 
-    const interactiveElements = document.querySelectorAll('a, .lang-btn, iframe');
+    const interactiveElements = document.querySelectorAll('a, .lang-btn');
     interactiveElements.forEach(el => {
       el.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
       el.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));

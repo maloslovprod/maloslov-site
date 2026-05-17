@@ -48,7 +48,7 @@
       color: inherit;
     }
 
-    /* --- КАСТОМНЫЙ КУРСОР (ПК) --- */
+    /* --- КАСТОМНЫЙ КУРСОР --- */
     .custom-cursor {
       width: 8px;
       height: 8px;
@@ -130,7 +130,7 @@
       transform: translateY(0);
     }
 
-    /* --- СЕКЦИИ (ОБЩЕЕ) --- */
+    /* --- СЕКЦИИ --- */
     section {
       padding: 140px 8% 120px;
     }
@@ -260,7 +260,7 @@
       opacity: 0.7;
     }
 
-    /* --- TRACK (СЕКЦИЯ С ПЛЕЕРОМ) --- */
+    /* --- TRACK (ОБЛОЖКА + МИНИ-ПЛЕЕР) --- */
     .track {
       background: var(--bg-dark);
       color: var(--text-light);
@@ -270,16 +270,28 @@
       align-items: center;
     }
 
-    .track-player-container {
+    .track-media-wrapper {
       width: 100%;
+      max-width: 400px;
+      margin: 0 auto;
       box-shadow: 0 30px 60px rgba(0,0,0,0.5);
     }
 
-    .track-player-container iframe {
+    .track-cover {
+      width: 100%;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      display: block;
+      border-radius: 2px 2px 0 0;
+    }
+
+    /* Миниатюрная полоска звука под обложкой */
+    .track-mini-player {
+      width: 100%;
+      height: 20px;
       display: block;
       border: none;
-      width: 100%;
-      height: 300px;
+      background: #000;
     }
 
     .track-title {
@@ -381,7 +393,7 @@
       border-top: 1px solid rgba(0, 0, 0, 0.05);
     }
 
-    /* --- АДАПТИВНОСТЬ ПОД МОБИЛЬНЫЕ УСТРОЙСТВА --- */
+    /* --- АДАПТИВНОСТЬ --- */
     @media (max-width: 991px) {
       .custom-cursor {
         display: none !important;
@@ -432,9 +444,8 @@
         width: 100%;
       }
 
-      .track-player-container {
-        max-width: 500px;
-        margin: 0 auto;
+      .track-media-wrapper {
+        max-width: 340px;
       }
 
       .gallery-grid {
@@ -471,7 +482,6 @@
 
 <body>
 
-  <!-- Кастомный курсор -->
   <div class="custom-cursor" id="cursor"></div>
 
   <header>
@@ -488,10 +498,10 @@
     <div class="hero-overlay"></div>
 
     <div class="hero-content">
-      <div class="hero-sub">ARTIST // MULTI-GENRE PRODUCER // SOUND ENGINEER</div>
+      <div class="hero-sub">ARTIST / PRODUCER / SOUND ENGINEER</div>
       <h1 class="hero-title">MALOSLOV</h1>
       <p class="hero-text" data-key="heroText">
-        Я создаю музыку как пространство для глубоких внутренних эмоций. Управляю всем процессом производства: от написания концепта и текста до финального сведения и мастеринга.
+        Я музыкальный артист, продюсер и саунд-инженер. Занимаюсь написанием музыки, текстов, сведением и мастерингом.
       </p>
       <div class="hero-buttons">
         <a href="#track" data-key="btnListen">СЛУШАТЬ</a>
@@ -506,23 +516,24 @@
     </div>
     <div>
       <div class="section-label" data-key="labelAbout">ОБ АРТИСТЕ</div>
-      <h2 class="about-title" data-key="aboutTitle">СОЗДАВАЯ СВОЙ ЗВУКОВОЙ МИР.</h2>
+      <h2 class="about-title" data-key="aboutTitle">БИОГРАФИЯ</h2>
       <p class="about-text" data-key="aboutText">
-        Я посвятил музыке более десяти лет. Прошел путь от изучения гитары до проектирования собственной студийной среды и продюсирования артистов в самых разных жанрах.<br><br>Каждый свой релиз я создаю «под ключ»: от первой строчки текста до финального мастеринг-компрессора. Для меня музыка — это одновременно личная терапия и способ транслировать чистую атмосферу через звук.
+        Я прошел путь длиною более десяти лет: от изучения гитары до проектирования собственной студийной среды и работы в различных музыкальных жанрах.<br><br>Каждый свой релиз я создаю «под ключ» — от написания первой строчки текста до финального мастеринг-компрессора. Музыка для меня — это способ транслировать атмосферу и личные переживания через звук.
       </p>
     </div>
   </section>
 
   <section class="track dark-section reveal" id="track">
-    <div class="track-player-container">
-      <!-- Родной плеер SoundCloud с вашим треком DUBAI AIRLINES -->
-      <iframe src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1884487695&color=%23050505&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=true"></iframe>
+    <!-- Блок с вашей обложкой и аккуратной мини-полосой плеера SC под ней -->
+    <div class="track-media-wrapper">
+      <img class="track-cover" src="./images/track-cover.jpg" alt="Обложка трека DUBAI AIRLINES" loading="lazy">
+      <iframe class="track-mini-player" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1884487695&color=%23050505&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false"></iframe>
     </div>
     <div>
       <div class="section-label" data-key="labelTopTrack">ГЛАВНЫЙ ТРЕК</div>
       <h2 class="track-title">DUBAI AIRLINES</h2>
       <p class="track-desc" data-key="trackDesc">
-        Наиболее прослушиваемый релиз MALOSLOV в коллаборации с артистом KAZZ.
+        Мой наиболее прослушиваемый релиз в коллаборации с артистом KAZZ.
       </p>
       <a class="btn-style listen-btn" href="https://song.link/i/1757498453" target="_blank" data-key="btnListenNow">
         СЛУШАТЬ СЕЙЧАС
@@ -531,12 +542,12 @@
   </section>
 
   <section class="gallery dark-section reveal" id="gallery">
-    <div class="section-label" data-key="labelGallery">СТУДИЙНЫЕ БУДНИ</div>
-    <h2 class="gallery-title" data-key="galleryTitle">ЗА ЗВУКОМ</h2>
+    <div class="section-label" data-key="labelGallery">ГАЛЕРЕЯ</div>
+    <h2 class="gallery-title" data-key="galleryTitle">АТМОСФЕРА</h2>
     <div class="gallery-grid">
-      <img src="./images/studio-1.jpg" alt="Процесс записи на студии MALOSLOV" loading="lazy">
-      <img src="./images/studio-2.jpg" alt="Саунд-дизайн и сведение" loading="lazy">
-      <img src="./images/studio-3.jpg" alt="Аналоговое оборудование в студии" loading="lazy">
+      <img src="./images/studio-1.jpg" alt="MALOSLOV на студии" loading="lazy">
+      <img src="./images/studio-2.jpg" alt="Процесс создания музыки" loading="lazy">
+      <img src="./images/studio-3.jpg" alt="Студийное оборудование" loading="lazy">
     </div>
   </section>
 
@@ -558,47 +569,48 @@
   </footer>
 
   <script>
+    // --- ОРИГИНАЛЬНЫЙ ТЕКСТ ОТ ПЕРВОГО ЛИЦА ---
     const translations = {
       ru: {
-        heroText: "Я создаю музыку как пространство для глубоких внутренних эмоций. Управляю всем процессом производства: от написания концепта и текста до финального сведения и мастеринга.",
+        heroText: "Я музыкальный артист, продюсер и саунд-инженер. Занимаюсь написанием музыки, текстов, сведением и мастерингом.",
         btnListen: "СЛУШАТЬ",
         btnAbout: "ОБО МНЕ",
         labelAbout: "ОБ АРТИСТЕ",
-        aboutTitle: "СОЗДАВАЯ СВОЙ ЗВУКОВОЙ МИР.",
-        aboutText: "Я посвятил музыке более десяти лет. Прошел путь от изучения гитары до проектирования собственной студийной среды и продюсирования артистов в самых разных жанрах.<br><br>Каждый свой релиз я создаю «под ключ»: от первой строчки текста до финального мастеринг-компрессора. Для меня музыка — это одновременно личная терапия и способ транслировать чистую атмосферу через звук.",
+        aboutTitle: "БИОГРАФИЯ",
+        aboutText: "Я прошел путь длиною более десяти лет: от изучения гитары до проектирования собственной студийной среды и работы в различных музыкальных жанрах.<br><br>Каждый свой релиз я создаю «под ключ» — от написания первой строчки текста до финального мастеринг-компрессора. Музыка для меня — это способ транслировать атмосферу и личные переживания через звук.",
         labelTopTrack: "ГЛАВНЫЙ ТРЕК",
-        trackDesc: "Наиболее прослушиваемый релиз MALOSLOV в коллаборации с артистом KAZZ.",
+        trackDesc: "Мой наиболее прослушиваемый релиз в коллаборации с артистом KAZZ.",
         btnListenNow: "СЛУШАТЬ СЕЙЧАС",
-        labelGallery: "СТУДИЙНЫЕ БУДНИ",
-        galleryTitle: "ЗА ЗВУКОМ",
+        labelGallery: "ГАЛЕРЕЯ",
+        galleryTitle: "АТМОСФЕРА",
         footerTag: "ТИХИЙ МОНОХРОМНЫЙ ОПЫТ"
       },
       en: {
-        heroText: "I architect music as a canvas for deep inner emotions. Handling the entire creative cycle: from initial songwriting and vocal tracking to final mixing and mastering.",
+        heroText: "I am a music artist, producer, and sound engineer. I write music, lyrics, mix, and master.",
         btnListen: "LISTEN",
         btnAbout: "ABOUT ME",
         labelAbout: "ABOUT",
-        aboutTitle: "ARCHITECTING MY OWN SONIC WORLD.",
-        aboutText: "I have dedicated over a decade to music. My journey evolved from learning guitar to building my own studio environment and producing for artists across diverse genres.<br><br>Every release is crafted entirely by me: from the first line of lyrics to the final mastering stage. Music remains both my personal therapy and a way to translate pure atmosphere into sound.",
+        aboutTitle: "BIOGRAPHY",
+        aboutText: "I have come a long way of over ten years: from learning the guitar to designing my own studio environment and working across various musical genres.<br><br>I create each of my releases from scratch—from writing the first line of lyrics to the final mastering compressor. For me, music is a way to translate atmosphere and personal experiences through sound.",
         labelTopTrack: "TOP TRACK",
-        trackDesc: "The most streamed release by MALOSLOV in collaboration with artist KAZZ.",
+        trackDesc: "My most streamed release in collaboration with artist KAZZ.",
         btnListenNow: "LISTEN NOW",
-        labelGallery: "STUDIO MOMENTS",
-        galleryTitle: "BEHIND THE SOUND",
+        labelGallery: "GALLERY",
+        galleryTitle: "ATMOSPHERE",
         footerTag: "SILENT MONOCHROME EXPERIENCE"
       },
       ua: {
-        heroText: "Я створюю музику як простір для глибоких внутрішніх емоцій. Керую всім процессом виробництва: від написання концепту й тексту до фінального зведення та мастерингу.",
+        heroText: "Я музичний артист, продюсер та саунд-інженер. Займаюся написанням музики, текстів, зведенням та мастерингом.",
         btnListen: "СЛУХАТИ",
         btnAbout: "ПРО МЕНЕ",
         labelAbout: "ПРО АРТИСТА",
-        aboutTitle: "СТВОРЮЮЧИ ВЛАСНИЙ ЗВУКОВИЙ СВІТ.",
-        aboutText: "Я присвятив музиці понад десять років. Прошов шлях від вивчення гітари до проектування власного студійного середовища та продюсування артистів у найрізноманітніших жанрах.<br><br>Кожен свій реліз я створюю «під ключ»: від першого рядка тексту до фінального мастерингу. Для мене музика — це одночасно особиста терапія та спосіб транслювати чисту атмосферу через звук.",
+        aboutTitle: "БІОГРАФІЯ",
+        aboutText: "Я пройшов шлях довжиною понад десять років: від вивчення гітари до проектування власного студійного середовища та роботи у різних музичних жанрах.<br><br>Кожен свій реліз я створюю «під ключ» — від написання першого рядка тексту до фінального мастеринг-компресора. Музика для мене — це спосіб транслювати атмосферу та особисті переживання через звук.",
         labelTopTrack: "ГОЛОВНИЙ ТРЕК",
-        trackDesc: "Найпопулярніший реліз MALOSLOV у колаборації з артистом KAZZ.",
+        trackDesc: "Мій найпопулярніший реліз у колаборації з артистом KAZZ.",
         btnListenNow: "СЛУХАТИ ЗАРАЗ",
-        labelGallery: "СТУДІЙНІ БУДНИ",
-        galleryTitle: "ЗА ЗВУКОМ",
+        labelGallery: "ГАЛЕРЕЯ",
+        galleryTitle: "АТМОСФЕРА",
         footerTag: "ТИХИЙ МОНОХРОМНИЙ ДОСВІД"
       }
     };
@@ -619,7 +631,7 @@
       });
     });
 
-    // --- ЛОГИКА КАСТОМНОГО КУРСОРA ---
+    // --- ЛОГИКА КУРСОРA ---
     const cursor = document.getElementById('cursor');
     document.addEventListener('mousemove', (e) => {
       cursor.style.left = e.clientX + 'px';
@@ -638,7 +650,7 @@
       section.addEventListener('mouseleave', () => cursor.parentElement.classList.remove('dark-section'));
     });
 
-    // --- АНИМАЦИЯ ПОЯВЛЕНИЯ ПРИ СКРОЛЛЕ (SCROLL REVEAL) ---
+    // --- SCROLL REVEAL ---
     const revealElements = document.querySelectorAll('.reveal');
     const revealOnScroll = () => {
       for (let i = 0; i < revealElements.length; i++) {

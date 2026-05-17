@@ -254,6 +254,15 @@
       margin-bottom: 30px;
     }
 
+    .about-lead {
+      font-size: clamp(18px, 2.2vw, 24px);
+      line-height: 1.5;
+      font-weight: 500;
+      opacity: 0.9;
+      margin-bottom: 25px;
+      letter-spacing: -0.3px;
+    }
+
     .about-text {
       font-size: clamp(15px, 1.5vw, 17px);
       line-height: 1.8;
@@ -497,7 +506,7 @@
       <div class="hero-sub">ARTIST / PRODUCER / SOUND ENGINEER</div>
       <h1 class="hero-title">MALOSLOV</h1>
       <p class="hero-text" data-key="heroText">
-        Независимый артист и продюсер. Реализую собственные идеи и музыкальные проекты полного цикла: от написания текста и продакшена до сведения и мастеринга.
+        Независимый артист и продюсер. Реализую собственные идеи и музыкальные проекты полного цикла — от написания текста и продакшена до сведения и мастеринга.
       </p>
       <div class="hero-buttons">
         <a href="#track" data-key="btnListen">СЛУШАТЬ</a>
@@ -514,8 +523,11 @@
     <div>
       <div class="section-label" data-key="labelAbout">ОБ АРТИСТЕ</div>
       <h2 class="about-title" data-key="aboutTitle">БИОГРАФИЯ</h2>
+      <p class="about-lead" data-key="aboutLead">
+        Для меня звук — это терапия и способ материализовать меланхолию и личный опыт в осязаемую атмосферу.
+      </p>
       <p class="about-text" data-key="aboutText">
-        Я прошел путь длиною более десяти лет: от изучения гитары до проектирования собственной студийной среды и работы в различных музыкальных жанрах.<br><br>Каждый свой релиз я создаю «под ключ» — от написания первой строчки текста до финального мастеринг-компрессора. Музыка для меня — это способ транслировать атмосферу и личные переживания через звук.
+        Мой подход к звуку формировался больше семи лет — от классической гитарной акустики до проектирования автономной студийной среды. Я не разделяю музыку на техническую и творческую части.<br><br>Каждая работа — это замкнутая экосистема. Я создаю релизы в полном одиночестве, контролируя каждый микрон процесса: от концептуальных текстов и архитектуры продакшена до финального мастеринга.
       </p>
     </div>
   </section>
@@ -566,13 +578,14 @@
   <script>
     const translations = {
       ru: {
-        heroText: "Независимый артист и продюсер. Реализую собственные идеи и музыкальные проекты полного цикла: от написания текста и продакшена до сведения и мастеринга.",
+        heroText: "Независимый артист и продюсер. Реализую собственные идеи и музыкальные проекты полного цикла — от написания текста и продакшена до сведения и мастеринга.",
         btnListen: "СЛУШАТЬ",
         btnAbout: "ОБО МНЕ",
         btnContact: "КОНТАКТЫ",
         labelAbout: "ОБ АРТИСТЕ",
         aboutTitle: "БИОГРАФИЯ",
-        aboutText: "Я прошел путь длиною более десяти лет: от изучения гитары до проектирования собственной студийной среды и работы в различных музыкальных жанрах.<br><br>Каждый свой релиз я создаю «под ключ» — от написания первой строчки текста до финального мастеринг-компрессора. Музыка для меня — это способ транслировать атмосферу и личные переживания через звук.",
+        aboutLead: "Для меня звук — это терапия и способ материализовать меланхолию и личный опыт в осязаемую атмосферу.",
+        aboutText: "Мой подход к звуку формировался больше семи лет — от классической гитарной акустики до проектирования автономной студийной среды. Я не разделяю музыку на техническую и творческую части.<br><br>Каждая работа — это замкнутая экосистема. Я создаю релизы в полном одиночестве, контролируя каждый микрон процесса: от концептуальных текстов и архитектуры продакшена до финального мастеринга.",
         labelTopTrack: "ГЛАВНЫЙ ТРЕК",
         trackDesc: "Мой наиболее прослушиваемый релиз в коллаборации с артистом KAZZ.",
         btnListenNow: "СЛУШАТЬ СЕЙЧАС",
@@ -581,13 +594,14 @@
         footerTag: "ТИХИЙ МОНОХРОМНЫЙ ОПЫТ"
       },
       en: {
-        heroText: "Independent artist and producer. Realizing original ideas and full-cycle music projects: from songwriting and production to mixing and mastering.",
+        heroText: "Independent artist and producer. Realizing original ideas and full-cycle music projects — from songwriting and production to mixing and mastering.",
         btnListen: "LISTEN",
         btnAbout: "ABOUT ME",
         btnContact: "CONTACT",
         labelAbout: "ABOUT",
         aboutTitle: "BIOGRAPHY",
-        aboutText: "I have come a long way of over ten years: from learning the guitar to designing my own studio environment and working across various musical genres.<br><br>I create each of my releases from scratch—from writing the first line of lyrics to the final mastering compressor. For me, music is a way to translate atmosphere and personal experiences through sound.",
+        aboutLead: "For me, sound is therapy and a way to materialize melancholy and personal experience into a tangible atmosphere.",
+        aboutText: "My approach to sound has been shaping for over seven years — from classical acoustic guitar to designing an autonomous studio environment. I don't divide music into technical and creative parts.<br><br>Each work is a self-contained ecosystem. I craft releases in total isolation, controlling every micron of the process: from conceptual lyrics and production architecture to the final master.",
         labelTopTrack: "TOP TRACK",
         trackDesc: "My most streamed release in collaboration with artist KAZZ.",
         btnListenNow: "LISTEN NOW",
@@ -596,19 +610,20 @@
         footerTag: "SILENT MONOCHROME EXPERIENCE"
       },
       ua: {
-        heroText: "Незалежний артист та продюсер. Реалізую власні ідеї та музичні проєкти повного циклу: від написання тексту та продакшену до зведення та мастерингу.",
+        heroText: "Незалежний артист та продюсер. Реалізую власні ідеї та музичні проєкти повного циклу — від написання текста та продакшену до зведення та мастерингу.",
         btnListen: "СЛУХАТИ",
         btnAbout: "ПРО МЕНЕ",
         btnContact: "КОНТАКТИ",
         labelAbout: "ПРО АРТИСТА",
         aboutTitle: "БІОГРАФІЯ",
-        aboutText: "Я пройшов шлях довжиною понад десять років: від вивчення гітары до проектування власного студійного середовища та роботи у різних музичних жанрах.<br><br>Кожен свій реліз я створюю «під ключ» — від написання першого рядка тексту до фінального мастеринг-компресора. Музыка для меня — это способ транслировать атмосферу та особисті переживання через звук.",
+        aboutLead: "Для мене звук — це терапія та спосіб матеріалізувати меланхолію і особистий досвід у відчутну атмосферу.",
+        aboutText: "Мій підхід до звуку формувався понад сім років — від класичної гітарної акустики до проєктування автономного студійного середовища. Я не ділю музику на технічну та творчу частини.<br><br>Кожна робота — це замкнута екосистема. Я створюю релізи у повній самотності, контролюючи кожен мікрон процесу: від концептуальних текстів та архітектури продакшену до фінального мастерингу.",
         labelTopTrack: "ГОЛОВНИЙ ТРЕК",
         trackDesc: "Мій найпопулярніший реліз у колаборації з артистом KAZZ.",
         btnListenNow: "СЛУХАТИ ЗАРАЗ",
         labelGallery: "ГАЛЕРЕЯ",
         galleryTitle: "АТМОСФЕРА",
-        footerTag: "ТИХИЙ МОНОХРОМНЫЙ ДОСВІД"
+        footerTag: "ТИХИЙ МОНОХРОМНИЙ ДОСВІД"
       }
     };
 

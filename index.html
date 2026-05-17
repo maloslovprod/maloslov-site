@@ -195,7 +195,6 @@
       margin-bottom: 40px;
     }
 
-    /* ИСПРАВЛЕНО: Сетка кнопок теперь резиновая (1fr), рамки не будут накладываться на изображение */
     .hero-buttons {
       display: grid;
       grid-template-columns: repeat(3, minmax(140px, 180px));
@@ -218,6 +217,20 @@
       background: var(--text-dark);
       color: var(--text-light);
       border-color: var(--text-dark);
+    }
+
+    /* НАСТРОЙКА КНОПКИ КОНТАКТЫ: Изначально черная с белым текстом */
+    .hero-buttons a.btn-solid {
+      background: var(--text-dark);
+      color: var(--text-light);
+      border-color: var(--text-dark);
+    }
+
+    /* При наведении становится прозрачной с черным текстом (как остальные в обычном состоянии) */
+    .hero-buttons a.btn-solid:hover {
+      background: transparent;
+      color: var(--text-dark);
+      border-color: rgba(0, 0, 0, 0.15);
     }
 
     /* --- ABOUT --- */
@@ -513,7 +526,7 @@
       <div class="hero-buttons">
         <a href="#track" data-key="btnListen">СЛУШАТЬ</a>
         <a href="#about" data-key="btnAbout">ОБО МНЕ</a>
-        <a href="#contact" data-key="btnContact">КОНТАКТЫ</a>
+        <a href="#contact" class="btn-solid" data-key="btnContact">КОНТАКТЫ</a>
       </div>
     </div>
   </section>
@@ -574,7 +587,7 @@
 
   <footer>
     <div>MALOSLOV © 2026</div>
-    </footer>
+  </footer>
 
   <script>
     const translations = {
@@ -614,9 +627,9 @@
         btnAbout: "ПРО МЕНЕ",
         btnContact: "КОНТАКТИ",
         labelAbout: "ПРО АРТИСТА",
-        aboutTitle: "БІОГРАФІЯ",
+        aboutTitle: "БІОГРАФИЯ",
         aboutLead: "Для мене звук — це терапія та спосіб матеріалізувати меланхолію і особистий досвід у відчутну атмосферу.",
-        aboutText: "Мій підхід до звуку формивався понад сім років — від класичної гітарної акустики до проєктування автономного студійного середовища. Я не розділяю музику на технічну та творчу частини.<br><br>Кожна робота — це замкнута екосистема. Я створюю релізи у повній самотності, контролюючи кожен мікрон процесу: від концептуальних текстів та архітектуры продакшену до фінального мастерингу.",
+        aboutText: "Мій підхід до звуку формивався понад сім років — від класичної гітарної акустики до проєктування автономного студійного середовища. Я не ділю музыку на технічну та творчу частини.<br><br>Кожна робота — це замкнута екосистема. Я створюю релізи у повній самотності, контролюючи кожен мікрон процесу: від концептуальних текстів та архітектуры продакшену до фінального мастерингу.",
         labelTopTrack: "ГОЛОВНИЙ ТРЕК",
         trackDesc: "Мій найпопулярніший реліз у колаборації з артистом KAZZ.",
         btnListenNow: "СЛУХАТИ ЗАРАЗ",

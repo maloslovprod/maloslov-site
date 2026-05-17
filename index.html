@@ -285,7 +285,6 @@
       border-radius: 2px 2px 0 0;
     }
 
-    /* Миниатюрная полоска звука под обложкой */
     .track-mini-player {
       width: 100%;
       height: 20px;
@@ -524,9 +523,10 @@
   </section>
 
   <section class="track dark-section reveal" id="track">
-    <!-- Блок с вашей обложкой и аккуратной мини-полосой плеера SC под ней -->
     <div class="track-media-wrapper">
-      <img class="track-cover" src="./images/track-cover.jpg" alt="Обложка трека DUBAI AIRLINES" loading="lazy">
+      <!-- Название файла обложки обновлено -->
+      <img class="track-cover" src="./images/dubai-airlines-cover.jpg" alt="Обложка трека DUBAI AIRLINES" loading="lazy">
+      <!-- Настроен прямой вызов плеера для dubai-airlines -->
       <iframe class="track-mini-player" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1884487695&color=%23050505&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false"></iframe>
     </div>
     <div>
@@ -569,7 +569,6 @@
   </footer>
 
   <script>
-    // --- ОРИГИНАЛЬНЫЙ ТЕКСТ ОТ ПЕРВОГО ЛИЦА ---
     const translations = {
       ru: {
         heroText: "Я музыкальный артист, продюсер и саунд-инженер. Занимаюсь написанием музыки, текстов, сведением и мастерингом.",
@@ -605,17 +604,16 @@
         btnAbout: "ПРО МЕНЕ",
         labelAbout: "ПРО АРТИСТА",
         aboutTitle: "БІОГРАФІЯ",
-        aboutText: "Я пройшов шлях довжиною понад десять років: від вивчення гітари до проектування власного студійного середовища та роботи у різних музичних жанрах.<br><br>Кожен свій реліз я створюю «під ключ» — від написання першого рядка тексту до фінального мастеринг-компресора. Музика для мене — це спосіб транслювати атмосферу та особисті переживання через звук.",
+        aboutText: "Я пройшов шлях довжиною понад десять років: від вивчення гітари до проектування власного студійного середовища та роботи у різних музичних жанрах.<br><br>Кожен свій реліз я створюю «під ключ» — від написання першого рядка тексту до фінального мастеринг-компресора. Музыка для меня — это способ транслировать атмосферу и личные переживания через звук.",
         labelTopTrack: "ГОЛОВНИЙ ТРЕК",
         trackDesc: "Мій найпопулярніший реліз у колаборації з артистом KAZZ.",
         btnListenNow: "СЛУХАТИ ЗАРАЗ",
         labelGallery: "ГАЛЕРЕЯ",
         galleryTitle: "АТМОСФЕРА",
-        footerTag: "ТИХИЙ МОНОХРОМНИЙ ДОСВІД"
+        footerTag: "ТИХИЙ МОНОХРОМНЫЙ ДОСВІД"
       }
     };
 
-    // Логика смены языков
     const buttons = document.querySelectorAll('.lang-btn');
     buttons.forEach(btn => {
       btn.addEventListener('click', () => {
@@ -631,7 +629,6 @@
       });
     });
 
-    // --- ЛОГИКА КУРСОРA ---
     const cursor = document.getElementById('cursor');
     document.addEventListener('mousemove', (e) => {
       cursor.style.left = e.clientX + 'px';
@@ -650,7 +647,6 @@
       section.addEventListener('mouseleave', () => cursor.parentElement.classList.remove('dark-section'));
     });
 
-    // --- SCROLL REVEAL ---
     const revealElements = document.querySelectorAll('.reveal');
     const revealOnScroll = () => {
       for (let i = 0; i < revealElements.length; i++) {

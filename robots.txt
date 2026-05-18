@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://maloslov-site.vercel.app/sitemap.xml

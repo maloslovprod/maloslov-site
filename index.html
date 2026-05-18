@@ -34,7 +34,6 @@
       --text-dark: #0b0b0b;
       --bg-dark: #050505;
       --text-light: #ffffff;
-      --accent-glow: rgba(0, 102, 255, 0.15); /* Цвет свечения Авроры */
       --transition-smooth: cubic-bezier(0.16, 1, 0.3, 1);
     }
 
@@ -71,7 +70,7 @@
     /* --- ИНДИКАТОР СКРОЛЛА --- */
     .scroll-progress {
       position: fixed;
-      top: 70px; /* Ровно под шапкой */
+      top: 70px;
       left: 0;
       width: 0%;
       height: 1px;
@@ -113,25 +112,47 @@
       100% { transform: translate(0, 0); }
     }
 
-    /* --- РАЗМЫТОЕ ЦВЕТНОЕ СВЕЧЕНИЕ (AURORA GLOW) --- */
+    /* --- АДАПТИВНЫЕ СФЕРЫ СВЕЧЕНИЯ (AURORA GLOW) --- */
     .aurora-glow {
       position: absolute;
-      width: 600px;
-      height: 600px;
+      width: 700px;
+      height: 700px;
       border-radius: 50%;
-      background: radial-gradient(circle, var(--accent-glow) 0%, rgba(13, 0, 255, 0) 70%);
-      filter: blur(80px);
       pointer-events: none;
       z-index: 1;
-      mix-blend-mode: screen;
-      animation: auroraFloat 12s ease-in-out infinite alternate;
+      filter: blur(100px);
+      animation: auroraFloat 16s ease-in-out infinite alternate;
     }
-    .glow-1 { top: -10%; right: -10%; --accent-glow: rgba(0, 132, 255, 0.12); }
-    .glow-2 { bottom: -20%; left: -10%; --accent-glow: rgba(119, 0, 255, 0.1); animation-delay: -4s; }
+
+    /* Сферы для светлых секций (мягкие дымчатые тени) */
+    .light-section .glow-left {
+      top: 10%;
+      left: -15%;
+      background: radial-gradient(circle, rgba(0, 0, 0, 0.03) 0%, rgba(0, 0, 0, 0) 70%);
+    }
+    .light-section .glow-right {
+      bottom: 10%;
+      right: -15%;
+      background: radial-gradient(circle, rgba(0, 44, 255, 0.02) 0%, rgba(0, 0, 0, 0) 70%);
+      animation-delay: -5s;
+    }
+
+    /* Сферы для темных секций (глубокие сине-фиолетовые сияния) */
+    .dark-section .glow-1 {
+      top: -15%;
+      right: -15%;
+      background: radial-gradient(circle, rgba(0, 102, 255, 0.12) 0%, rgba(0, 0, 0, 0) 75%);
+    }
+    .dark-section .glow-2 {
+      bottom: -20%;
+      left: -15%;
+      background: radial-gradient(circle, rgba(119, 0, 255, 0.08) 0%, rgba(0, 0, 0, 0) 75%);
+      animation-delay: -4s;
+    }
 
     @keyframes auroraFloat {
-      0% { transform: translate(0, 0) scale(1); }
-      100% { transform: translate(8%, -5%) scale(1.15); }
+      0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+      100% { transform: translate(6%, -4%) scale(1.1) rotate(30deg); }
     }
 
     /* --- КАСТОМНЫЙ КУРСОР --- */
@@ -222,7 +243,7 @@
       position: relative;
     }
 
-    /* --- HERO С КИНЕМАТОГРАФИЧНОЙ ШТОРКОЙ --- */
+    /* --- HERO --- */
     .hero {
       position: relative;
       min-height: 100vh;
@@ -266,24 +287,12 @@
       font-weight: 500;
     }
 
-    /* Эффект шторки для главного имени */
-    .curtain-wrapper {
-      overflow: hidden;
-      margin-bottom: 30px;
-    }
-
     .hero-title {
       font-size: clamp(55px, 11vw, 160px);
       line-height: 0.85;
       font-weight: 900;
       letter-spacing: -4px;
-      transform: translateY(100%);
-      animation: curtainOpen 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-      animation-delay: 0.2s;
-    }
-
-    @keyframes curtainOpen {
-      to { transform: translateY(0); }
+      margin-bottom: 30px;
     }
 
     .hero-text {
@@ -310,6 +319,8 @@
       transition: background-color 0.4s var(--transition-smooth), color 0.4s var(--transition-smooth), border-color 0.4s var(--transition-smooth);
       background: transparent;
       white-space: nowrap;
+      position: relative;
+      z-index: 4;
     }
 
     .hero-buttons a:hover, .btn-style:hover {
@@ -330,13 +341,18 @@
       border-color: rgba(0, 0, 0, 0.15);
     }
 
-    /* --- ABOUT С КАНТОВЫМ ТЕКСТОМ --- */
+    /* --- ABOUT --- */
     .about {
       display: grid;
       grid-template-columns: 1.2fr 2fr;
       gap: 8%;
       align-items: center;
       z-index: 2;
+    }
+
+    .about-image {
+      position: relative;
+      z-index: 3;
     }
 
     .about-image img {
@@ -359,7 +375,6 @@
       font-weight: 700;
     }
 
-    /* Эффект аутлайна (контурного текста) при ховере */
     .about-title, .track-title, .gallery-title {
       font-size: clamp(32px, 4.5vw, 68px);
       line-height: 1.05;
@@ -462,6 +477,8 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 30px;
+      position: relative;
+      z-index: 3;
     }
 
     .gallery-grid img {
@@ -497,6 +514,8 @@
       gap: 16px;
       max-width: 1100px;
       margin: 0 auto;
+      position: relative;
+      z-index: 3;
     }
 
     .contact-links .btn-style:hover {
@@ -514,6 +533,8 @@
       letter-spacing: 3px;
       opacity: 0.4;
       border-top: 1px solid rgba(0, 0, 0, 0.05);
+      position: relative;
+      z-index: 3;
     }
 
     /* --- АДАПТИВНОСТЬ --- */
@@ -629,15 +650,16 @@
     </div>
   </header>
 
-  <section class="hero">
+  <section class="hero light-section">
+    <div class="aurora-glow glow-left"></div>
+    <div class="aurora-glow glow-right"></div>
+
     <div class="hero-bg"></div>
     <div class="hero-overlay"></div>
 
     <div class="hero-content">
       <div class="hero-sub">ARTIST / PRODUCER / SOUND ENGINEER</div>
-      <div class="curtain-wrapper">
-        <h1 class="hero-title">MALOSLOV</h1>
-      </div>
+      <h1 class="hero-title">MALOSLOV</h1>
       <p class="hero-text" data-key="heroText">
         Независимый артист и продюсер. Реализую собственные идеи и музыкальные проекты полного цикла — от написания текста и продакшена до сведения и мастеринга.
       </p>
@@ -649,7 +671,10 @@
     </div>
   </section>
 
-  <section class="about reveal" id="about">
+  <section class="about light-section reveal" id="about">
+    <div class="aurora-glow glow-left"></div>
+    <div class="aurora-glow glow-right"></div>
+
     <div class="about-image">
       <img src="./images/about.jpg" alt="Музыкальный артист MALOSLOV" loading="lazy">
     </div>
@@ -671,7 +696,6 @@
 
     <div class="track-media-wrapper">
       <img class="track-cover" src="./images/dubai-airlines-cover.jpg" alt="Обложка трека DUBAI AIRLINES" loading="lazy">
-      
       <iframe data-testid="embed-iframe" style="border-radius:2px; margin-top:15px;" src="https://open.spotify.com/embed/album/3BJxoCUlBDLv0p8DTlfnG6?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
     </div>
     <div>
@@ -687,6 +711,9 @@
   </section>
 
   <section class="gallery dark-section reveal" id="gallery">
+    <div class="aurora-glow glow-1"></div>
+    <div class="aurora-glow glow-2"></div>
+
     <h2 class="gallery-title" data-key="galleryTitle">АТМОСФЕРА</h2>
     <div class="gallery-grid">
       <img src="./images/studio-1.jpg" alt="MALOSLOV на студии" loading="lazy">
@@ -695,7 +722,7 @@
     </div>
   </section>
 
-  <section class="contact reveal" id="contact">
+  <section class="contact light-section reveal" id="contact">
     <h2 class="contact-title">CONTACT</h2>
     <div class="contact-links">
       <a class="btn-style" href="https://instagram.com/malosslovv" target="_blank" rel="noopener noreferrer">INSTAGRAM</a>
@@ -750,8 +777,8 @@
         btnContact: "КОНТАКТИ",
         labelAbout: "ПРО АРТИСТА",
         aboutTitle: "БІОГРАФИЯ",
-        aboutLead: "Для мене звук — це терапія та спосіб матеріалізувати меланхолію і особистий досвід у відчутну атмосферу.",
-        aboutText: "Мій подхід до звуку формивався понад сім років — від класичної гітарной акустики до проєктування автономного студійного середовища. Я не ділю музыку на технічну та творчу частини.<br><br>Кожна робота — це замкнута екосистема. Я створюю релізи у повній самотності, контролюючи кожен мікрон процесу: від концептуальних текстів та архітектуры продакшену до фінального мастерингу.",
+        aboutLead: "Для мене звук — це терапія та спосіб материалізувати меланхолію і особистий досвід у відчутну атмосферу.",
+        aboutText: "Мій подхід до звуку формивався понад сім років — від классичної гітарної акустики до проєктування автономного студійного середовища. Я не ділю музыку на технічну та творчу частини.<br><br>Каждая работа — это замкнута екосистема. Я створюю релізи у повній самотності, контролюючи кожен мікрон процесу: від концептуальних текстів та архітектуры продакшену до фінального мастерингу.",
         labelTopTrack: "ГОЛОВНИЙ ТРЕК",
         trackDesc: "Мій найпопулярніший реліз у колаборації з артистом KAZZ.",
         btnListenNow: "СЛУХАТИ ЗАРАЗ",
@@ -796,6 +823,7 @@
       el.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
     });
 
+    /* --- СМЕНА ТЕМ КУРСОРA И ИНДИКАТОРА ПРИ СКРОЛЛЕ --- */
     const darkSections = document.querySelectorAll('.dark-section');
     darkSections.forEach(section => {
       section.addEventListener('mouseenter', () => {
@@ -804,7 +832,7 @@
       });
       section.addEventListener('mouseleave', () => {
         cursor.parentElement.classList.remove('dark-section');
-        document.body.classList.add('dark-active');
+        document.body.classList.remove('dark-active');
       });
     });
 
